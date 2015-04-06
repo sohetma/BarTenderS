@@ -38,7 +38,7 @@ public class Utilisateur {
             this.role = role;
         }
         else {
-            // TODO renvoyer un message d'erreur.
+            throw new IllegalArgumentException();
         }
     }
 
