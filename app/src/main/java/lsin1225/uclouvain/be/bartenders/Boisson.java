@@ -55,6 +55,23 @@ public class Boisson {
         }
     }
 
+    @override
+    /**
+     * deux boissons sont les mêmes si elles ont le même nom.
+     */
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+
+        if (o instanceof Boisson) {
+            Boisson autre = (Boisson) o;
+
+            return autre.nom().equals(this.nom);
+        } else {
+            return false;
+        }
+    }
+
     public void ajouterEvaluation(Evaluation evaluation){
         evaluations.add(evaluation);
     }
