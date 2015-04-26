@@ -1,5 +1,8 @@
 package lsin1225.uclouvain.be.bartenders;
 
+/**
+ * Transfer Object pour la table "boisson"
+ */
 @DatabaseTable(tableName = "boisson")
 public class BoissonTO {
     @DatabaseField(id = true, canBeNull = false)
