@@ -25,7 +25,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * et K est la classe de la clé principale de la table.
      */
     private Dao<BoissonTO, String> boissonDAO;
-    //TODO le reste des TO & DAO
+    private Dao<CategorieTO, String> categorieDAO;
+    private Dao<CommandeTO, Integer> commandeDAO;
+    private Dao<BoissonCommandeTO, Void> boissonCommandeDAO;
+    private Dao<TableTO, Integer> tableDAO;
+    private Dao<UtilisateurTO, String> utilisateurDAO;
+    private Dao<ClientTO, String> clientDAO;
+    private Dao<ServeurTO, String> serveurDAO;
+    private Dao<GestionnaireTO, String> gestionnaireDAO;
+    private Dao<EvaluationTO, Void> evaluationDAO;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -47,10 +55,46 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * @return
      * @throws SQLException
      */
-    public Dao<BoissonTO, String> getDao() throws SQLException {
+    public Dao<BoissonTO, String> getBoissonDAO() throws SQLException {
         if(boissonDAO == null) {
             boissonDAO = getDao(BoissonTO.class);
         }
         return boissonDAO;
+    }
+
+    public Dao<CategorieTO, String> getCategorieDAO() {
+        return categorieDAO;
+    }
+
+    public Dao<CommandeTO, Integer> getCommandeDAO() {
+        return commandeDAO;
+    }
+
+    public Dao<BoissonCommandeTO, Void> getBoissonCommandeDAO() {
+        return boissonCommandeDAO;
+    }
+
+    public Dao<TableTO, Integer> getTableDAO() {
+        return tableDAO;
+    }
+
+    public Dao<UtilisateurTO, String> getUtilisateurDAO() {
+        return utilisateurDAO;
+    }
+
+    public Dao<ClientTO, String> getClientDAO() {
+        return clientDAO;
+    }
+
+    public Dao<ServeurTO, String> getServeurDAO() {
+        return serveurDAO;
+    }
+
+    public Dao<GestionnaireTO, String> getGestionnaireDAO() {
+        return gestionnaireDAO;
+    }
+
+    public Dao<EvaluationTO, Void> getEvaluationDAO() {
+        return evaluationDAO;
     }
 }
