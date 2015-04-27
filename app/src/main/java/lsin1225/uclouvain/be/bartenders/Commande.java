@@ -27,7 +27,7 @@ public class Commande {
      * @param boissons une ArrayList de Boissons dans la commande.
      */
     public Commande(ArrayList<Boisson> boissons) {
-        this(boissons, false)
+        this(boissons, false);
     }
 
     /**
