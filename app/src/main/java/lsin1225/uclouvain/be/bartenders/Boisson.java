@@ -51,11 +51,11 @@ public class Boisson {
         if (somme == 0){
             return 0;
         } else {
-            return eva / evaluations.size();
+            return somme / evaluations.size();
         }
     }
 
-    @override
+    @Override
     /**
      * deux boissons sont les mêmes si elles ont le même nom.
      */
