@@ -43,7 +43,7 @@ public class Commande {
      * @param quantite un entier >= 0 disant combien d'instances à ajouter
      */
     public void ajouterBoisson(Boisson boisson, int quantite) {
-        if (n < 0)
+        if (quantite < 0)
             throw new IllegalArgumentException("Impossible d'ajouter un nombre négatif de boissons.");
         for (int i = 0; i < quantite; i++) {
             boissons.add(boisson);

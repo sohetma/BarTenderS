@@ -1,4 +1,4 @@
-package lsin1225.uclouvain.be.bartenders;
+package lsin1225.uclouvain.be.bartenders.Activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,6 +32,9 @@ import com.google.android.gms.common.SignInButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lsin1225.uclouvain.be.bartenders.PlusBaseActivity;
+import lsin1225.uclouvain.be.bartenders.R;
 
 
 /**

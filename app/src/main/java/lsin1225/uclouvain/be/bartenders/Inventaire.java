@@ -1,5 +1,6 @@
 package lsin1225.uclouvain.be.bartenders;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,16 @@ public class Inventaire {
         return boissons;
     }
 
-    public ArrayList<Boisson> getBoissonsTriees(****){ //utilisation d'un regex?
-        return ****;
+    public ArrayList<Boisson> getBoissonsTriees(String str){ //utilisation d'un regex?
+        ArrayList<Boisson> toreturn=new ArrayList<Boisson>();
+        for(int i=1; i <= boissons.size(); i++){
+            String nomboisson=(boissons.get(i)).nom();
+            String nomcategorie=((boissons.get(i)).categorie()).nom();
+            String nomdescription=(boissons.get(i)).description();
+            if(nomboisson.contains(str) || nomcategorie.contains(str) ||nomdescription.contains(str)){
+                toreturn.add(boissons.get(i));
+            }
+        }
+        return toreturn;
     }
 }
