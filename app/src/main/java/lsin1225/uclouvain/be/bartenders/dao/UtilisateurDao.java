@@ -67,4 +67,22 @@ public class UtilisateurDao extends Dao<Utilisateur> {
 
         return cursorToRows(cursor);
     }
+
+    public boolean authenticate(String login, String mot_de_passe) {
+        Cursor cursor = db.rawQuery("SELECT Count(*)" +
+                        "FROM ?" +
+                        "WHERE ? = ? AND ? = ?",
+                new String[]{
+                        COL_LOGIN,
+                        TABLE_UTILISATEUR,
+                        COL_LOGIN,
+                        login,
+                        COL_MOT_DE_PASSE,
+                        mot_de_passe
+                }
+        );
+
+        cursor.moveToNext();
+        return cursor.getInt(0) == 1;
+    }
 }
