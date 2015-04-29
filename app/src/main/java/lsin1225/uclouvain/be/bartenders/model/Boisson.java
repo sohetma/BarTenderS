@@ -1,20 +1,58 @@
-package lsin1225.uclouvain.be.bartenders;
+package lsin1225.uclouvain.be.bartenders.model;
 
-import java.util.ArrayList;
+import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
+import lsin1225.uclouvain.be.bartenders.dao.Dao;
 
 /**
  * Représente une boisson
  * Created by alex on 4/13/15.
  */
-public class Boisson {
+public class Boisson extends Row {
     private String nom;
     private Categorie categorie;
     private String description;
     private float prix;
     private int stock;
     private int stockMax;
-    private int seuil;
-    private ArrayList<Evaluation> evaluations;
+    private int stockSeuil;
+
+    public class Evaluation {
+        private static final int NOTE_MAX = 5;
+
+        private int score;
+        private Utilisateur utilisateur;
+
+        /**
+         * Instancie l'évaluation.
+         * @param score un int entre 0 et NOTE_MAX.
+         * @param utilisateur l'utilisateur qui a donné l'évaluation
+         */
+        public Evaluation(int score, Utilisateur utilisateur){
+            setScore(score);
+            this.utilisateur = utilisateur;
+        }
+
+        public int score() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            if (score < 0)
+                this.score = 0;
+            else if (score > NOTE_MAX)
+                this.score = NOTE_MAX;
+            else
+                this.score = score;
+        }
+
+        public Utilisateur utilisateur() {
+            return utilisateur;
+        }
+
+        public void setUtilisateur(Utilisateur utilisateur) {
+            this.utilisateur = utilisateur;
+        }
+    }
 
     /**
      * instancie une nouvelle boisson.
@@ -24,9 +62,9 @@ public class Boisson {
      * @param prix un float > 0;
      * @param stock un int > 0;
      * @param stockMax
-     * @param seuil
+     * @param stockSeuil
      */
-    public Boisson(String nom, Categorie categorie, String description, float prix, int stock, int stockMax, int seuil) {
+    public Boisson(String nom, Categorie categorie, String description, float prix, int stock, int stockMax, int stockSeuil) {
         if (nom.isEmpty() || prix <= 0 || stock <= 0) {
             throw new IllegalArgumentException();
         }
@@ -36,23 +74,14 @@ public class Boisson {
         this.prix = prix;
         this.stock = stock;
         this.stockMax = stockMax;
-        this.seuil = seuil;
+        this.stockSeuil = stockSeuil;
     }
 
     /**
      * Renvoie la moyenne de toutes les évaluations sur cette boisson.
      */
     public int evaluationMoyenne() {
-        int somme = 0;
-        for (Evaluation eva : evaluations){
-            somme += eva.note();
-        }
-
-        if (somme == 0){
-            return 0;
-        } else {
-            return somme / evaluations.size();
-        }
+        return BoissonDao.instance().evaluationMoyenne(this.nom);
     }
 
     @Override
@@ -72,12 +101,12 @@ public class Boisson {
         }
     }
 
-    public void ajouterEvaluation(Evaluation evaluation){
-        evaluations.add(evaluation);
+    public void ajouterEvaluation(Evaluation evaluation) {
+        BoissonDao.instance().addEvaluation(this.nom, evaluation.utilisateur().login(), evaluation.score());
     }
 
     public void supprimerEvaluation(Evaluation evaluation){
-        evaluations.remove(evaluation);
+        BoissonDao.instance().removeEvaluation(this.nom, evaluation.utilisateur().login());
     }
 
     public String nom() {
@@ -128,11 +157,16 @@ public class Boisson {
         this.stockMax = stockMax;
     }
 
-    public int seuil() {
-        return seuil;
+    public int stockSeuil() {
+        return stockSeuil;
     }
 
-    public void setSeuil(int seuil) {
-        this.seuil = seuil;
+    public void setStockSeuil(int stockSeuil) {
+        this.stockSeuil = stockSeuil;
+    }
+
+    @Override
+    protected Dao defaultDao() {
+        return BoissonDao.instance();
     }
 }

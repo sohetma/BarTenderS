@@ -1,10 +1,13 @@
-package lsin1225.uclouvain.be.bartenders;
+package lsin1225.uclouvain.be.bartenders.model;
+
+import lsin1225.uclouvain.be.bartenders.dao.Dao;
+import lsin1225.uclouvain.be.bartenders.dao.UtilisateurDao;
 
 /**
  * représente un utilisateur de l'application
  * Created by alex on 4/6/15.
  */
-public class Utilisateur {
+public class Utilisateur extends Row {
 
     public static enum Role {
         CLIENT, SERVEUR, GESTIONNAIRE
@@ -12,7 +15,7 @@ public class Utilisateur {
 
 
     private String login;
-    private String password;
+    private String motDePasse;
     private String nom;
     private Role role;
 
@@ -20,20 +23,20 @@ public class Utilisateur {
      * Instancie un nouvel Utilisateur
      * @param login Le login de l'utilisateur. Il sera utilisé pour se connecter
      *              Le login doit être String non vide et qui n'est pas encore utilisé.
-     * @param password Le mot de passe de l'utilisateur. Il sera utilisé pour se connecter.
+     * @param motDePasse Le mot de passe de l'utilisateur. Il sera utilisé pour se connecter.
      *                 Le mot de passe doit être un String non vide.
      * @param nom Le nom de l'utilisateur. Il sert  juste à afficher le vrai nom de l'utilisateur
      *            au lieu de son login.
      *            Le nom doit être un String non vide.
      * @param role Le role de l'utilisateur.
      */
-    public Utilisateur(String login, String password, String nom, Role role) {
+    public Utilisateur(String login, String motDePasse, String nom, Role role) {
         if (!login.isEmpty() /*TODO vérifier si le login est déjà utilisé*/
-            && !password.isEmpty()
+            && !motDePasse.isEmpty()
             && !nom.isEmpty()) {
 
             this.login = login;
-            this.password = password;
+            this.motDePasse = motDePasse;
             this.nom = nom;
             this.role = role;
         }
@@ -50,12 +53,12 @@ public class Utilisateur {
         this.login = login;
     }
 
-    public String password() {
-        return password;
+    public String motDePasse() {
+        return motDePasse;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public String nom() {
@@ -72,5 +75,10 @@ public class Utilisateur {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    protected Dao defaultDao() {
+        return UtilisateurDao.instance();
     }
 }

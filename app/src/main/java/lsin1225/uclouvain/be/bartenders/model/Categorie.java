@@ -1,11 +1,15 @@
-package lsin1225.uclouvain.be.bartenders;
+package lsin1225.uclouvain.be.bartenders.model;
+
+import lsin1225.uclouvain.be.bartenders.dao.CategorieDao;
+import lsin1225.uclouvain.be.bartenders.dao.Dao;
 
 /**
  * représente une catégorie de boisson.
  * Created by alex on 4/13/15.
  */
-public class Categorie {
+public class Categorie extends Row {
 
+    //TODO
     private static final String DEFAULT_ICON = "/path/to/some/default/icon.png";
 
     private String nom;
@@ -46,5 +50,10 @@ public class Categorie {
 
     public void setIcone(String icone) {
         this.icone = icone;
+    }
+
+    @Override
+    protected Dao defaultDao() {
+        return CategorieDao.instance();
     }
 }
