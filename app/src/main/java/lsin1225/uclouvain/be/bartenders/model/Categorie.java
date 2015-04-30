@@ -9,8 +9,7 @@ import lsin1225.uclouvain.be.bartenders.dao.Dao;
  */
 public class Categorie extends Row {
 
-    //TODO
-    private static final String DEFAULT_ICON = "/path/to/some/default/icon.png";
+    private static final String DEFAULT_ICON = "soda";
 
     private String nom;
     private String icone;
@@ -21,9 +20,6 @@ public class Categorie extends Row {
      * @param icone un String non-vide avec l'adresse de l'icône.
      */
     public Categorie(String nom, String icone) {
-        if (nom.isEmpty() || icone.isEmpty())
-            throw new IllegalArgumentException();
-
         this.nom = nom;
         this.icone = icone;
     }

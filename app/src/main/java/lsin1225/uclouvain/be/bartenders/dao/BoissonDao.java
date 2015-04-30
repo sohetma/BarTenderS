@@ -46,7 +46,7 @@ public class BoissonDao extends Dao<Boisson> {
     @Override
     Boisson cursorToRow(Cursor cursor) {
         try {
-            Categorie categorie = (Categorie) CategorieDao.instance()
+            Categorie categorie = CategorieDao.instance()
                     .find(cursor.getString(cursor.getColumnIndexOrThrow(COL_NOM_CATEGORIE)));
 
             return new Boisson(

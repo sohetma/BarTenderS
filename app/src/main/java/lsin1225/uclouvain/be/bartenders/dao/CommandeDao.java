@@ -22,8 +22,8 @@ public class CommandeDao extends Dao<Commande> {
     }
 
     private CommandeDao() {
-        this.tableName = TABLE_CATEGORIE;
-        this.idColumn = COL_NOM_CATEGORIE;
+        this.tableName = TABLE_COMMANDE;
+        this.idColumn = COL_NUMERO_COMMANDE;
     }
 
     @Override

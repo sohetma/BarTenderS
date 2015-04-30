@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
-import lsin1225.uclouvain.be.bartenders.dao.UtilisateurDao;
-import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
 
 
 /**
@@ -33,11 +31,17 @@ public class LoginActivity extends Activity {
         mMotDePasseView = (EditText) findViewById(R.id.mot_de_passe);
         mConnexionBouton = (Button) findViewById(R.id.connexion_bouton);
         mConnexionEchoueeView = findViewById(R.id.connexion_echouee);
+
+        // Si un utilisateur est déjà connecté, on passe directement à l'activité Dispatch
+        if (((MyApplication) getApplication()).utilisateurConnecte() != null) {
+            Intent intent = new Intent(this, DispatchActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void connexion(View view) {
-        // Compare le login/mot de passe entrés par l'utilisateur avec la db
-        boolean connexionReussie = UtilisateurDao.instance().authenticate(
+        // Essaie de se connecter avec le login/mot de passe entrés par l'utilisateur
+        boolean connexionReussie = ((MyApplication) getApplication()).connexion(
                 mLoginView.getText().toString(),
                 mMotDePasseView.getText().toString()
         );
@@ -46,10 +50,6 @@ public class LoginActivity extends Activity {
             // Affiche un toast indiquant que la connexion a réussie
             Toast.makeText(getApplicationContext(), getString(R.string.alert_connexion_reussie),
                     Toast.LENGTH_SHORT).show();
-
-            // Récupère l'utilisateur connecté et stocke le dans MyApplication
-            Utilisateur utilisateur = UtilisateurDao.instance().find(mLoginView.getText().toString());
-            ((MyApplication) getApplication()).setUtilisateurConnecte(utilisateur);
 
             // Démarrer l'activité DispatchActivity
             Intent intent = new Intent(this, DispatchActivity.class);

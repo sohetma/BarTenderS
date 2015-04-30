@@ -31,18 +31,10 @@ public class Utilisateur extends Row {
      * @param role Le role de l'utilisateur.
      */
     public Utilisateur(String login, String motDePasse, String nom, Role role) {
-        if (!login.isEmpty() /*TODO vérifier si le login est déjà utilisé*/
-            && !motDePasse.isEmpty()
-            && !nom.isEmpty()) {
-
-            this.login = login;
-            this.motDePasse = motDePasse;
-            this.nom = nom;
-            this.role = role;
-        }
-        else {
-            throw new IllegalArgumentException();
-        }
+        this.login = login;
+        this.motDePasse = motDePasse;
+        this.nom = nom;
+        this.role = role;
     }
 
     public String login() {

@@ -3,7 +3,6 @@ package lsin1225.uclouvain.be.bartenders.activities;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,21 +37,21 @@ public class CarteActivity extends ListActivity {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            //TODO icone
             View rowView = inflater.inflate(resource, parent, false);
             TextView nomView = (TextView) rowView.findViewById(R.id.nom);
             TextView prixView = (TextView) rowView.findViewById(R.id.prix);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icone);
 
             nomView.setText(values.get(position).nom());
-            prixView.setText(String.format("%.2f €", values.get(position).prix()));
+            prixView.setText(String.format(
+                    getString(R.string.format_prix),
+                    values.get(position).prix())
+            );
 
             int imageid = getResources().getIdentifier(
                     "icon_" + values.get(position).categorie().icone(),
                     "drawable", getPackageName()
             );
-            Log.i("CarteActivity", "icone src=" + values.get(position).categorie().icone()
-                    + " imageid=" + imageid);
             if (imageid != 0) {
                 imageView.setImageDrawable(getResources().getDrawable(imageid));
             }

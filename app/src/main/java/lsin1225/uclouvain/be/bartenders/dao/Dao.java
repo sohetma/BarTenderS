@@ -3,6 +3,7 @@ package lsin1225.uclouvain.be.bartenders.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,9 @@ abstract public class Dao<T extends Row> {
                 null, null, null, "1");
         cursor.moveToNext();
         T retval = cursorToRow(cursor);
+        if (retval == null) {
+            Log.e("Dao.find", "retval == null");
+        }
 
         cursor.close();
         return retval;
