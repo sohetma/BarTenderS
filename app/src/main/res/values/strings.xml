@@ -7,4 +7,6 @@
     <string name="title_activity_commande">Commande</string>
     <string name="title_activity_addition">Addition</string>
     <string name="title_activity_inventaire">Inventaire</string>
+    <string name="action_inscription">Inscription</string>
+    <string name="action_deconnexion">Déconnexion</string>
 </resources>
