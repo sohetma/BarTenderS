@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$USER_HOME$/Copy/ucl/q4/coo/bartender/bartender.iml" filepath="$USER_HOME$/Copy/ucl/q4/coo/bartender/bartender.iml" />
-      <module fileurl="file://$USER_HOME$/Copy/ucl/q4/coo/bartender/bartender.iml" filepath="$USER_HOME$/Copy/ucl/q4/coo/bartender/bartender.iml" />
     </modules>
   </component>
 </project>

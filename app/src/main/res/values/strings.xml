@@ -9,4 +9,5 @@
     <string name="title_activity_inventaire">Inventaire</string>
     <string name="action_inscription">Inscription</string>
     <string name="action_deconnexion">Déconnexion</string>
+    <string name="error_carte_vide">Aucune boisson dans la carte</string>
 </resources>

@@ -166,6 +166,11 @@ public class Boisson extends Row {
     }
 
     @Override
+    public String toString() {
+        return nom();
+    }
+
+    @Override
     protected Dao defaultDao() {
         return BoissonDao.instance();
     }
