@@ -57,10 +57,10 @@ public class DispatchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispatch);
 
-        car = (Button)findViewById(R.id.button);
-        com = (Button)findViewById(R.id.button2);
-        add = (Button)findViewById(R.id.button3);
-        inv = (Button)findViewById(R.id.button4);
+        car = (Button)findViewById(R.id.carte_bouton);
+        com = (Button)findViewById(R.id.commande_bouton);
+        add = (Button)findViewById(R.id.addition_bouton);
+        inv = (Button)findViewById(R.id.inventaire_bouton);
 
         car.setOnClickListener(clickListenerBoutonCar);
         com.setOnClickListener(clickListenerBoutonCom);

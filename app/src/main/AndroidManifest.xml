@@ -3,14 +3,15 @@
     package="lsin1225.uclouvain.be.bartenders" >
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name="MyApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +19,47 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.DispatchActivity"
+            android:label="@string/app_name" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activities.CarteActivity"
+            android:label="@string/title_activity_carte"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CommandeActivity"
+            android:label="@string/title_activity_commande"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
+        <activity
+            android:name=".activities.AdditionActivity"
+            android:label="@string/title_activity_addition"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
+        <activity
+            android:name=".activities.InventaireActivity"
+            android:label="@string/title_activity_inventaire"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
     </application>
 
 </manifest>
