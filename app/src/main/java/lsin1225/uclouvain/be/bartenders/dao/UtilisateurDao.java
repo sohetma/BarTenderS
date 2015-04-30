@@ -52,15 +52,11 @@ public class UtilisateurDao extends Dao<Utilisateur> {
 
     public List<Utilisateur> listClientsTable(int numero) {
         Cursor cursor = db.rawQuery("SELECT u.*" +
-                        "FROM ? u" +
-                        "LEFT JOIN ? c ON c.? = u.?" +
-                        "WHERE c.? = ?",
+                        " FROM " + TABLE_UTILISATEUR + " u" +
+                        " LEFT JOIN " + TABLE_CLIENT + " c" +
+                        " ON c." + COL_LOGIN + " = u." + COL_LOGIN +
+                        " WHERE c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        TABLE_UTILISATEUR,
-                        TABLE_CLIENT,
-                        COL_LOGIN,
-                        COL_LOGIN,
-                        COL_NUMERO_TABLE,
                         Integer.toString(numero)
                 }
         );
@@ -70,14 +66,11 @@ public class UtilisateurDao extends Dao<Utilisateur> {
 
     public boolean authenticate(String login, String mot_de_passe) {
         Cursor cursor = db.rawQuery("SELECT Count(*)" +
-                        "FROM ?" +
-                        "WHERE ? = ? AND ? = ?",
+                        " FROM " + TABLE_UTILISATEUR +
+                        " WHERE " + COL_LOGIN + " = ?" +
+                        " AND " + COL_MOT_DE_PASSE + " = ?",
                 new String[]{
-                        COL_LOGIN,
-                        TABLE_UTILISATEUR,
-                        COL_LOGIN,
                         login,
-                        COL_MOT_DE_PASSE,
                         mot_de_passe
                 }
         );

@@ -59,23 +59,21 @@ public class TableDao extends Dao<Table> {
     }
 
     public float addition(int numero) {
-        Cursor cursor = db.rawQuery("SELECT Sum(b.?)" +
-                        "FROM ? b" +
-                        "LEFT JOIN ? bc ON bc.? = c.?" +
-                        "LEFT JOIN ? c ON c.? = ?",
+        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + ")" +
+                        " FROM " + TABLE_BOISSON + " b" +
+                        " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
+                        " ON bc." + COL_NUMERO_COMMANDE + " = c." + COL_NUMERO_COMMANDE +
+                        " LEFT JOIN " + TABLE_COMMANDE + " c" +
+                        " ON c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        COL_PRIX,
-                        TABLE_BOISSON,
-                        TABLE_BOISSON_COMMANDE,
-                        COL_NUMERO_COMMANDE,
-                        COL_NUMERO_COMMANDE,
-                        TABLE_COMMANDE,
-                        COL_NUMERO_TABLE,
                         Integer.toString(numero)
                 }
         );
 
         cursor.moveToNext();
-        return cursor.getInt(0);
+        int retval =  cursor.getInt(0);
+
+        cursor.close();
+        return retval;
     }
 }
