@@ -1,5 +1,8 @@
 package lsin1225.uclouvain.be.bartenders.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.dao.Dao;
 

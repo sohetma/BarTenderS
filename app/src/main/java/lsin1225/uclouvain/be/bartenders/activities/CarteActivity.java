@@ -1,14 +1,21 @@
 package lsin1225.uclouvain.be.bartenders.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,8 +43,8 @@ public class CarteActivity extends ListActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
             View rowView = inflater.inflate(resource, parent, false);
+
             TextView nomView = (TextView) rowView.findViewById(R.id.nom);
             TextView prixView = (TextView) rowView.findViewById(R.id.prix);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icone);
@@ -73,6 +80,16 @@ public class CarteActivity extends ListActivity {
         );
 
         setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
+
+        BoissonDialogFragment.newInstance(boisson.nom()).show(
+                getFragmentManager(),
+                "boisson"
+        );
     }
 
 }
