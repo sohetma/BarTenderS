@@ -1,5 +1,8 @@
 package lsin1225.uclouvain.be.bartenders.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.dao.Dao;
 
@@ -163,6 +166,11 @@ public class Boisson extends Row {
 
     public void setStockSeuil(int stockSeuil) {
         this.stockSeuil = stockSeuil;
+    }
+
+    @Override
+    public String toString() {
+        return nom();
     }
 
     @Override

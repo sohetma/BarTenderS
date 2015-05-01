@@ -1,67 +1,95 @@
 package lsin1225.uclouvain.be.bartenders.activities;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import lsin1225.uclouvain.be.bartenders.R;
+import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
-import lsin1225.uclouvain.be.bartenders.model.Inventaire;
 
-/**
- * Created by bruno on 30-04-15.
- */
-public class CarteActivity extends Activity {
+public class CarteActivity extends ListActivity {
 
-    private List<Boisson> boissons;
+    private class BoissonListAdapter extends ArrayAdapter<Boisson> {
 
+        private static final int resource = R.layout.carte_row;
 
+        private final Context context;
+        private final List<Boisson> values;
+
+        public BoissonListAdapter(Context context, List<Boisson> values) {
+            super(context, resource, values);
+            this.context = context;
+            this.values = values;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(resource, parent, false);
+
+            TextView nomView = (TextView) rowView.findViewById(R.id.nom);
+            TextView prixView = (TextView) rowView.findViewById(R.id.prix);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.icone);
+
+            nomView.setText(values.get(position).nom());
+            prixView.setText(String.format(
+                    getString(R.string.format_prix),
+                    values.get(position).prix())
+            );
+
+            int imageid = getResources().getIdentifier(
+                    "icon_" + values.get(position).categorie().icone(),
+                    "drawable", getPackageName()
+            );
+            if (imageid != 0) {
+                imageView.setImageDrawable(getResources().getDrawable(imageid));
+            }
+
+            return rowView;
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carte);
 
-        boissons=Inventaire.boissons(****);// récupérer la liste de boissons de l'inventaire dans la BDD
+        List<Boisson> boissons = BoissonDao.instance().findAll();
 
-        final ListView listview = (ListView) findViewById(R.id.show_listView);
+        ListAdapter adapter = new BoissonListAdapter(
+                this,
+                boissons
+        );
 
+        setListAdapter(adapter);
+    }
 
-        // Création de l'adapter pour faire la liaison entre les données (collectedItems) et
-        // l'affichage de chaque ligne de la liste.
-        SimpleAdapter adapter= new SimpleAdapter(this, boissons,
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
 
-
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
-            }
-
-        });
+        BoissonDialogFragment.newInstance(boisson.nom()).show(
+                getFragmentManager(),
+                "boisson"
+        );
     }
 
 }
-

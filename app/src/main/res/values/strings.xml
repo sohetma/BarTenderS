@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">BarTenderS</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_carte">Carte</string>
+    <string name="title_activity_commande">Commande</string>
+    <string name="title_activity_addition">Addition</string>
+    <string name="title_activity_inventaire">Inventaire</string>
+    <string name="action_inscription">Inscription</string>
+    <string name="action_deconnexion">Déconnexion</string>
+    <string name="error_carte_vide">Aucune boisson dans la carte</string>
+    <string name="format_prix">%.2f €</string>
+    <string name="action_apropos">À propos</string>
+    <string name="texte_boisson_description">Description</string>
+    <string name="texte_boisson_prix">Prix :&#160;</string>
+    <string name="action_ajouter">Ajouter</string>
+    <string name="action_retour">Retour</string>
 </resources>

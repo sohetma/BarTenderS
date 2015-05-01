@@ -22,8 +22,8 @@ public class CommandeDao extends Dao<Commande> {
     }
 
     private CommandeDao() {
-        this.tableName = TABLE_CATEGORIE;
-        this.idColumn = COL_NOM_CATEGORIE;
+        this.tableName = TABLE_COMMANDE;
+        this.idColumn = COL_NUMERO_COMMANDE;
     }
 
     @Override
@@ -85,10 +85,10 @@ public class CommandeDao extends Dao<Commande> {
     }
 
     public List<Commande.BoissonCommande> listBoissonCommande(int numero) {
-        Cursor cursor = db.rawQuery("SELECT b.*, bc.? AS quantite" +
-                        "FROM ? bc" +
-                        "LEFT JOIN ? b ON b.? = bc.?" +
-                        "WHERE bc.? = ?;",
+        Cursor cursor = db.rawQuery("SELECT b.*, bc.? AS quantite " +
+                        "FROM ? bc " +
+                        "LEFT JOIN ? b ON b.? = bc.? " +
+                        "WHERE bc.? = ?; ",
                 new String[]{
                         COL_QUANTITE,
                         TABLE_BOISSON_COMMANDE,
@@ -113,8 +113,7 @@ public class CommandeDao extends Dao<Commande> {
 
     public List<Commande> listCommandesTable(int numero) {
         Cursor cursor = db.query(TABLE_COMMANDE, null,
-                "? = ?", new String[]{
-                        COL_NUMERO_TABLE,
+                COL_NUMERO_TABLE + " = ?", new String[]{
                         Integer.toString(numero)
                 },
                 null, null, null);
@@ -123,14 +122,12 @@ public class CommandeDao extends Dao<Commande> {
     }
 
     public float addition(int numero) {
-        Cursor cursor = db.rawQuery("SELECT Sum(b.?)" +
-                        "FROM ? b" +
-                        "LEFT JOIN ? bc ON bc.? = ?",
+        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + ")" +
+                        " FROM " + TABLE_BOISSON + " b" +
+                        " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
+                        " ON bc." + COL_NOM_BOISSON + " = b." + COL_NOM_BOISSON +
+                        " WHERE bc." + COL_NUMERO_COMMANDE + " = ?",
                 new String[]{
-                        COL_PRIX,
-                        TABLE_BOISSON,
-                        TABLE_BOISSON_COMMANDE,
-                        COL_NUMERO_COMMANDE,
                         Integer.toString(numero)
                 }
         );

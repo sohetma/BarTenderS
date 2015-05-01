@@ -46,7 +46,7 @@ public class BoissonDao extends Dao<Boisson> {
     @Override
     Boisson cursorToRow(Cursor cursor) {
         try {
-            Categorie categorie = (Categorie) CategorieDao.instance()
+            Categorie categorie = CategorieDao.instance()
                     .find(cursor.getString(cursor.getColumnIndexOrThrow(COL_NOM_CATEGORIE)));
 
             return new Boisson(
@@ -73,22 +73,21 @@ public class BoissonDao extends Dao<Boisson> {
 
     public void removeEvaluation(String nom_boisson, String login) {
         db.delete(TABLE_EVALUATION,
-                "? = ? AND ? = ?", new String[]{
-                        COL_NOM_BOISSON,
+                COL_NOM_BOISSON + " = ? AND " + COL_LOGIN + " = ?",
+                new String[]{
                         nom_boisson,
-                        COL_LOGIN,
                         login
                 }
         );
     }
 
     public int evaluationMoyenne(String nom_boisson) {
-        Cursor cursor = db.rawQuery("SELECT Sum(e.?) / Count(e.*) FROM ? e WHERE e.? = ?",
+        Cursor cursor = db.rawQuery("SELECT Sum(e." + COL_SCORE + ") / Count(e.*)" +
+                        " FROM " + TABLE_EVALUATION + " e" +
+                        " WHERE e." + nom_boisson + " = ?",
                 new String[]{
-                        COL_SCORE,
-                        TABLE_EVALUATION,
                         COL_NOM_BOISSON,
-                        nom_boisson
+
                 }
         );
         cursor.moveToNext();
@@ -96,20 +95,13 @@ public class BoissonDao extends Dao<Boisson> {
     }
 
     public List<Boisson> listBoissonsTable(int numero) {
-        Cursor cursor = db.rawQuery("SELECT DISTINCT b.* FROM ? b" +
-                        "LEFT JOIN ? bc ON bc.? = b.?" +
-                        "LEFT JOIN ? c ON c.? = bc.?" +
-                        "WHERE" +
-                        "c.? = ?;",
+        Cursor cursor = db.rawQuery("SELECT DISTINCT b.* FROM " + TABLE_BOISSON + " b" +
+                        " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
+                        " ON bc." + COL_NOM_BOISSON + " = b." + COL_NOM_BOISSON +
+                        " LEFT JOIN " + TABLE_COMMANDE + " c" +
+                        " ON c." + COL_NUMERO_COMMANDE + " = bc." + COL_NUMERO_COMMANDE +
+                        " WHERE c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        TABLE_BOISSON,
-                        TABLE_BOISSON_COMMANDE,
-                        COL_NOM_BOISSON,
-                        COL_NOM_BOISSON,
-                        TABLE_COMMANDE,
-                        COL_NUMERO_COMMANDE,
-                        COL_NUMERO_COMMANDE,
-                        COL_NUMERO_TABLE,
                         Integer.toString(numero)
                 }
         );

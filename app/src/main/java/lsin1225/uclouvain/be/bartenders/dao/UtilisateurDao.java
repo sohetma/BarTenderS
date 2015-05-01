@@ -2,6 +2,7 @@ package lsin1225.uclouvain.be.bartenders.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class UtilisateurDao extends Dao<Utilisateur> {
     }
 
     private UtilisateurDao() {
-        this.tableName = TABLE_BOISSON;
-        this.idColumn = COL_NOM_BOISSON;
+        this.tableName = TABLE_UTILISATEUR;
+        this.idColumn = COL_LOGIN;
     }
 
     @Override
@@ -39,12 +40,13 @@ public class UtilisateurDao extends Dao<Utilisateur> {
     @Override
     Utilisateur cursorToRow(Cursor cursor) {
         try {
-            return new Utilisateur(
+            Utilisateur utilisateur = new Utilisateur(
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_LOGIN)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_MOT_DE_PASSE)),
                     "", Utilisateur.Role.CLIENT //TODO
                     //cursor.getString(cursor.getColumnIndexOrThrow(COL_NOM))
             );
+            return utilisateur;
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -52,37 +54,36 @@ public class UtilisateurDao extends Dao<Utilisateur> {
 
     public List<Utilisateur> listClientsTable(int numero) {
         Cursor cursor = db.rawQuery("SELECT u.*" +
-                        "FROM ? u" +
-                        "LEFT JOIN ? c ON c.? = u.?" +
-                        "WHERE c.? = ?",
+                        " FROM " + TABLE_UTILISATEUR + " u" +
+                        " LEFT JOIN " + TABLE_CLIENT + " c" +
+                        " ON c." + COL_LOGIN + " = u." + COL_LOGIN +
+                        " WHERE c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        TABLE_UTILISATEUR,
-                        TABLE_CLIENT,
-                        COL_LOGIN,
-                        COL_LOGIN,
-                        COL_NUMERO_TABLE,
                         Integer.toString(numero)
                 }
         );
 
-        return cursorToRows(cursor);
+        List<Utilisateur> retval = cursorToRows(cursor);
+
+        cursor.close();
+        return retval;
     }
 
     public boolean authenticate(String login, String mot_de_passe) {
         Cursor cursor = db.rawQuery("SELECT Count(*)" +
-                        "FROM ?" +
-                        "WHERE ? = ? AND ? = ?",
+                        " FROM " + TABLE_UTILISATEUR +
+                        " WHERE " + COL_LOGIN + " = ?" +
+                        " AND " + COL_MOT_DE_PASSE + " = ?",
                 new String[]{
-                        COL_LOGIN,
-                        TABLE_UTILISATEUR,
-                        COL_LOGIN,
                         login,
-                        COL_MOT_DE_PASSE,
                         mot_de_passe
                 }
         );
 
         cursor.moveToNext();
-        return cursor.getInt(0) == 1;
+        boolean retval = cursor.getInt(0) == 1;
+
+        cursor.close();
+        return retval;
     }
 }

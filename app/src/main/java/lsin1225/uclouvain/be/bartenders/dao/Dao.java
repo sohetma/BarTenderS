@@ -3,6 +3,7 @@ package lsin1225.uclouvain.be.bartenders.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,12 @@ import lsin1225.uclouvain.be.bartenders.model.Row;
 abstract public class Dao<T extends Row> {
     protected String tableName;
     protected String idColumn;
-    protected SQLiteDatabase db;
+    protected static SQLiteDatabase db;
+
+    public static void setDb(SQLiteDatabase theDb) {
+        db = theDb;
+    }
+
 
     abstract ContentValues rowToContentValues(T row);
 
@@ -30,10 +36,6 @@ abstract public class Dao<T extends Row> {
         return rows;
     }
 
-    public void setDb(SQLiteDatabase db) {
-        this.db = db;
-    }
-
     public void insert(T row) {
         ContentValues values = rowToContentValues(row);
         db.insert(tableName, null, values);
@@ -45,24 +47,33 @@ abstract public class Dao<T extends Row> {
                 idColumn + "=?", new String[]{values.getAsString(idColumn)});
     }
 
+    public void remove(T row) {
+        ContentValues values = rowToContentValues(row);
+        db.delete(tableName,
+                idColumn+"=?", new String[]{values.getAsString(idColumn)});
+    }
+
     public T find(String id) {
         Cursor cursor = db.query(tableName, null,
                 idColumn + "=?", new String[]{id},
                 null, null, null, "1");
         cursor.moveToNext();
-        return cursorToRow(cursor);
+        T retval = cursorToRow(cursor);
+        if (retval == null) {
+            Log.e("Dao.find", "retval == null");
+        }
+
+        cursor.close();
+        return retval;
     }
 
     public List<T> findAll() {
         Cursor cursor = db.query(tableName, null,
                 null, null,
                 null, null, null);
-        return cursorToRows(cursor);
-    }
+        List<T> retval = cursorToRows(cursor);
 
-    public void remove(T row) {
-        ContentValues values = rowToContentValues(row);
-        db.delete(tableName,
-                idColumn+"=?", new String[]{values.getAsString(idColumn)});
+        cursor.close();
+        return retval;
     }
 }
