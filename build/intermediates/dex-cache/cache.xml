@@ -2,60 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-d4c0fa222e7ffb1602c4704716c27331fbc500fb.jar" />
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-cac40fee4982420323a2c5c4e6d8693a7d7ed781.jar" />
     </item>
     <item
-        jar="/home/xavier/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-core/4.48/e579bd2905d0399af5029aaaf9817d5fa0ca88a5/ormlite-core-4.48.jar"
+        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/ormlite-core-4.48-1750463edc2dbdd32d112e096d03bbd56d4e765f.jar" />
-    </item>
-    <item
-        jar="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-226ff25549c33f29fc0f78a3695bb399f538a741.jar" />
-    </item>
-    <item
-        jar="/home/xavier/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-android/4.48/afa06f539a4026c10b247386312aa67404b80a16/ormlite-android-4.48.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="afa06f539a4026c10b247386312aa67404b80a16">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/ormlite-android-4.48-0b6be92d0413f5d12cb0107d29a7c7f6c7994202.jar" />
-    </item>
-    <item
-        jar="/home/xavier/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-b7cabbb0f445f26bb84b9278b07fc3451c655591.jar" />
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-5bd9a29448199f497aa677a62278fa4b8cb5b991.jar" />
     </item>
     <item
         jar="/home/xavier/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-e877f017f677c7bc6d7e2b58853e8788d1355e3f.jar" />
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-e877f017f677c7bc6d7e2b58853e8788d1355e3f.jar" />
     </item>
     <item
-        jar="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-fc2eb60bd20c15cd08ba31187f42cf85d208a354.jar" />
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-a6cfd5fcc1a12012dc2cad7f3887bd20ff0c7a6e.jar" />
     </item>
     <item
-        jar="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/home/xavier/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/home/xavier/Copy/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-d88e7c4bcb5fb7674b2c14dae27a6183f57984d7.jar" />
+        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-b7cabbb0f445f26bb84b9278b07fc3451c655591.jar" />
+    </item>
+    <item
+        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-126c966e8888d48b6b5346097c97997610374888.jar" />
     </item>
 
 </items>

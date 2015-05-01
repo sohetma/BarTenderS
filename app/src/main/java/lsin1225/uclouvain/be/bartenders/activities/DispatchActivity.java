@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
+import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
 
 /**
@@ -46,10 +47,18 @@ public class DispatchActivity extends Activity {
         }
     };
 
+    private OnClickListener clickListenerBoutonDeco = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            deconnexion(v);
+        }
+    };
+
     Button car = null;
     Button com = null;
     Button add = null;
     Button inv = null;
+    Button deco = null;
 
 
     @Override
@@ -61,11 +70,13 @@ public class DispatchActivity extends Activity {
         com = (Button)findViewById(R.id.commande_bouton);
         add = (Button)findViewById(R.id.addition_bouton);
         inv = (Button)findViewById(R.id.inventaire_bouton);
+        deco = (Button)findViewById(R.id.deconnexion_bouton);
 
         car.setOnClickListener(clickListenerBoutonCar);
         com.setOnClickListener(clickListenerBoutonCom);
         add.setOnClickListener(clickListenerBoutonAdd);
         inv.setOnClickListener(clickListenerBoutonInv);
+        deco.setOnClickListener(clickListenerBoutonDeco);
     }
 
 
@@ -108,5 +119,22 @@ public class DispatchActivity extends Activity {
     public void inventaire(View v) {
         Intent intent = new Intent(this, InventaireActivity.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * Déconnecte l'utilisateur.
+     */
+    public void deconnexion(View v) {
+        // Déconnecte l'utilisateur
+        ((MyApplication) getApplication()).deconnexion();
+
+        // Lance l'activité de login
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+
+        // Ferme l'activité de dispatch
+        finish();
     }
 }
