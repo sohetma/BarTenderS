@@ -1,13 +1,8 @@
 package lsin1225.uclouvain.be.bartenders.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,6 +18,11 @@ import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
 
+/**
+ * Histoires d'utilisateur :
+ * - consulter la carte
+ * - rechercher une boisson par son nom
+ */
 public class CarteActivity extends ListActivity {
 
     private class BoissonListAdapter extends ArrayAdapter<Boisson> {

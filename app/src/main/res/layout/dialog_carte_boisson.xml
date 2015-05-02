@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/texte_boisson_description"
+            android:text="@string/label_boisson_description"
             android:id="@+id/textView"
             android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/texte_boisson_prix"
+            android:text="@string/label_boisson_prix"
             android:id="@+id/textView2" />
 
         <TextView

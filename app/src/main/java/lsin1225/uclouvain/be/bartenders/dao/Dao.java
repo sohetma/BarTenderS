@@ -57,8 +57,11 @@ abstract public class Dao<T extends Row> {
         Cursor cursor = db.query(tableName, null,
                 idColumn + "=?", new String[]{id},
                 null, null, null, "1");
-        cursor.moveToNext();
-        T retval = cursorToRow(cursor);
+        T retval = null;
+
+        if (cursor.moveToNext()) {
+            retval = cursorToRow(cursor);
+        }
         if (retval == null) {
             Log.e("Dao.find", "retval == null");
         }

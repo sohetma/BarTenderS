@@ -59,7 +59,7 @@ public class TableDao extends Dao<Table> {
     }
 
     public float addition(int numero) {
-        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + ")" +
+        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + " * bc." + COL_QUANTITE + ")" +
                         " FROM " + TABLE_BOISSON + " b" +
                         " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
                         " ON bc." + COL_NUMERO_COMMANDE + " = c." + COL_NUMERO_COMMANDE +

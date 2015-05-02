@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,16 +16,27 @@ import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
 
+/**
+ * Histoires d'utilisateur :
+ * - commander une boisson
+ * - consulter les informations d'une boisson
+ * - évaluer une boisson
+ */
 public class BoissonDialogFragment extends DialogFragment {
 
-    public static BoissonDialogFragment newInstance(String nom_boisson) {
+    private static final String ARG_NOM_BOISSON = "nom_boisson";
+
+    public static BoissonDialogFragment newInstance(String nomBoisson) {
         BoissonDialogFragment f = new BoissonDialogFragment();
 
         Bundle args = new Bundle();
-        args.putString("nom_boisson", nom_boisson);
+        args.putString(ARG_NOM_BOISSON, nomBoisson);
         f.setArguments(args);
 
         return f;
+    }
+
+    public BoissonDialogFragment() {
     }
 
     @Override
@@ -74,7 +86,7 @@ public class BoissonDialogFragment extends DialogFragment {
         builder.setView(dialogView)
                 .setPositiveButton(R.string.action_ajouter, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO ajouter à la carte
+                        //TODO ajouter à la commande
                     }
                 })
                 .setNegativeButton(R.string.action_retour, new DialogInterface.OnClickListener() {

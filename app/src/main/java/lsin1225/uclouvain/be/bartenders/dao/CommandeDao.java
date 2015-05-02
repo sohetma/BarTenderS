@@ -58,15 +58,12 @@ public class CommandeDao extends Dao<Commande> {
         values.put(COL_NOM_BOISSON, nom_boisson);
         values.put(COL_QUANTITE, quantite);
         if (db.insert(tableName, null, values) == -1) { // Le couple commande-boisson existe déjà
-            db.execSQL("UPDATE ? SET ?=(?+?) WHERE ?=? AND ?=?",
+            db.execSQL("UPDATE " + TABLE_BOISSON_COMMANDE + "" +
+                            " SET " + COL_QUANTITE + "=(" + COL_QUANTITE + "+" + Integer.toString(quantite) + ")" +
+                            " WHERE " + COL_NUMERO_COMMANDE + " = ?" +
+                            " AND " + COL_NOM_BOISSON + " = ?",
                     new String[]{
-                            TABLE_BOISSON_COMMANDE,
-                            COL_QUANTITE,
-                            COL_QUANTITE,
-                            Integer.toString(quantite),
-                            COL_NUMERO_COMMANDE,
                             Integer.toString(numero_commande),
-                            COL_NOM_BOISSON,
                             nom_boisson
                     }
             );
@@ -85,17 +82,12 @@ public class CommandeDao extends Dao<Commande> {
     }
 
     public List<Commande.BoissonCommande> listBoissonCommande(int numero) {
-        Cursor cursor = db.rawQuery("SELECT b.*, bc.? AS quantite " +
-                        "FROM ? bc " +
-                        "LEFT JOIN ? b ON b.? = bc.? " +
-                        "WHERE bc.? = ?; ",
+        Cursor cursor = db.rawQuery("SELECT b.*, bc." + COL_QUANTITE + " AS quantite" +
+                        " FROM " + TABLE_BOISSON_COMMANDE + " bc" +
+                        " LEFT JOIN " + TABLE_BOISSON + " b" +
+                        " ON b." + COL_NOM_BOISSON + " = bc." + COL_NOM_BOISSON +
+                        " WHERE bc." + COL_NUMERO_COMMANDE + " = ?;",
                 new String[]{
-                        COL_QUANTITE,
-                        TABLE_BOISSON_COMMANDE,
-                        TABLE_BOISSON,
-                        COL_NOM_BOISSON,
-                        COL_NOM_BOISSON,
-                        COL_NUMERO_COMMANDE,
                         Integer.toString(numero)
                 }
         );
@@ -108,6 +100,8 @@ public class CommandeDao extends Dao<Commande> {
             );
             rows.add(boissonCommande);
         }
+
+        cursor.close();
         return rows;
     }
 
@@ -118,11 +112,14 @@ public class CommandeDao extends Dao<Commande> {
                 },
                 null, null, null);
 
-        return cursorToRows(cursor);
+        List<Commande> retval = cursorToRows(cursor);
+
+        cursor.close();
+        return retval;
     }
 
     public float addition(int numero) {
-        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + ")" +
+        Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + " * bc." + COL_QUANTITE + ")" +
                         " FROM " + TABLE_BOISSON + " b" +
                         " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
                         " ON bc." + COL_NOM_BOISSON + " = b." + COL_NOM_BOISSON +
@@ -132,7 +129,13 @@ public class CommandeDao extends Dao<Commande> {
                 }
         );
 
+        float retval = 0;
         cursor.moveToNext();
-        return cursor.getInt(0);
+        if (cursor.moveToNext()) {
+            retval = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return retval;
     }
 }

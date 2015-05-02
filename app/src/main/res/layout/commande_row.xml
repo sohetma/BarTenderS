@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
     android:gravity="center_vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:id="@+id/icone"
-            android:layout_marginRight="10dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/quantite"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:width="32dp"
+            android:singleLine="true"
+            android:inputType="number|numberSigned" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:id="@+id/nom"
-            android:layout_toRightOf="@+id/icone"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/quantite" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:id="@+id/quantité"
+            android:id="@+id/prix"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true" />
+
     </RelativeLayout>
+
 </LinearLayout>
