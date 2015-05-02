@@ -10,6 +10,7 @@
     <string name="action_inscription">Inscription</string>
     <string name="action_deconnexion">Déconnexion</string>
     <string name="error_carte_vide">Aucune boisson dans la carte</string>
+    <string name="error_commande_vide">Aucune boisson n'a été commandée</string>
     <string name="format_prix">%.2f €</string>
     <string name="action_apropos">À propos</string>
     <string name="texte_boisson_description">Description</string>
