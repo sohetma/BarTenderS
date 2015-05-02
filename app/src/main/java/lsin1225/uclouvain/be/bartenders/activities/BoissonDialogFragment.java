@@ -57,7 +57,6 @@ public class BoissonDialogFragment extends DialogFragment {
         if (nom_boisson != null) {
             boisson = BoissonDao.instance().find(nom_boisson);
         } else {
-            Log.e("BoissonDialogFragment", "boisson == null");
             this.getDialog().cancel();
             return null;
         }
