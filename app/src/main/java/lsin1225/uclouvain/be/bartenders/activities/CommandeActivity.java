@@ -22,6 +22,11 @@ import lsin1225.uclouvain.be.bartenders.dao.CommandeDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
 import lsin1225.uclouvain.be.bartenders.model.Commande;
 
+/**
+ * Histoires d'utilisateur :
+ * - obtenir l'addition d'une table
+ * - confirmer un payement
+ */
 public class CommandeActivity extends ListActivity {
 
     private class BoissonCommandeListAdapter extends ArrayAdapter<Commande.BoissonCommande> {

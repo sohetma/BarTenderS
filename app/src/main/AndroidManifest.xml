@@ -60,6 +60,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
         </activity>
+        <activity
+            android:name=".activities.ListeCommandesActivity"
+            android:label="@string/title_activity_liste_commandes"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
+        <activity
+            android:name=".activities.MonCompteActivity"
+            android:label="@string/title_activity_mon_compte"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
+        <activity
+            android:name=".SalleActivity"
+            android:label="@string/title_activity_salle"
+            android:parentActivityName=".activities.DispatchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="lsin1225.uclouvain.be.bartenders.activities.DispatchActivity" />
+        </activity>
     </application>
 
 </manifest>

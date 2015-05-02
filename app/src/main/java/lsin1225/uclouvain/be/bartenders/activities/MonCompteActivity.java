@@ -9,24 +9,21 @@ import lsin1225.uclouvain.be.bartenders.R;
 
 /**
  * Histoires d'utilisateur :
- * - visualiser l'état des stocks
- * - renouveler le stock
- * - modifier la carte
- * - modifier les caractéristiques d'une boisson
+ * - mettre à jour les informations personnelles de mon compte
  */
-public class InventaireActivity extends ActionBarActivity {
+public class MonCompteActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventaire);
+        setContentView(R.layout.activity_mon_compte);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inventaire, menu);
+        getMenuInflater().inflate(R.menu.menu_mon_compte, menu);
         return true;
     }
 

@@ -7,6 +7,9 @@ import android.view.MenuItem;
 
 import lsin1225.uclouvain.be.bartenders.R;
 
+/**
+ * TODO: supprimer cette activité ; elle a été combinée avec CommandeActivity
+ */
 public class AdditionActivity extends ActionBarActivity {
 
     @Override

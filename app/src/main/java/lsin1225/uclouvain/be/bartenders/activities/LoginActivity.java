@@ -13,6 +13,8 @@ import lsin1225.uclouvain.be.bartenders.R;
 
 
 /**
+ * Histoires d'utilisateur :
+ * - se connecter à l'application
  */
 public class LoginActivity extends Activity {
 

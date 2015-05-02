@@ -18,4 +18,10 @@
     <string name="action_ajouter">Ajouter</string>
     <string name="action_retour">Retour</string>
     <string name="error_commande_inexistante">Pas de commande sélectionnée</string>
+    <string name="title_activity_liste_commandes">Liste des commandes</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_mon_compte">Mon compte</string>
+    <string name="title_activity_salle">Visualisation de la salle</string>
 </resources>

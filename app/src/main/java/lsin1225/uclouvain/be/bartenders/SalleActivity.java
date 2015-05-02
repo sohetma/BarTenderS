@@ -1,32 +1,28 @@
-package lsin1225.uclouvain.be.bartenders.activities;
+package lsin1225.uclouvain.be.bartenders;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import lsin1225.uclouvain.be.bartenders.R;
-
 /**
  * Histoires d'utilisateur :
- * - visualiser l'état des stocks
- * - renouveler le stock
- * - modifier la carte
- * - modifier les caractéristiques d'une boisson
+ * - visualiser l'occupation de la salle
+ * - modifier la disposition de la salle
  */
-public class InventaireActivity extends ActionBarActivity {
+public class SalleActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventaire);
+        setContentView(R.layout.activity_salle);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inventaire, menu);
+        getMenuInflater().inflate(R.menu.menu_salle, menu);
         return true;
     }
 
