@@ -12,8 +12,10 @@
     <string name="error_carte_vide">Aucune boisson dans la carte</string>
     <string name="format_prix">%.2f €</string>
     <string name="action_apropos">À propos</string>
-    <string name="texte_boisson_description">Description</string>
-    <string name="texte_boisson_prix">Prix :&#160;</string>
+    <string name="label_boisson_description">Description</string>
+    <string name="label_boisson_prix">Prix :&#160;</string>
+    <string name="label_commande_addition">Total :&#160;</string>
     <string name="action_ajouter">Ajouter</string>
     <string name="action_retour">Retour</string>
+    <string name="error_commande_inexistante">Pas de commande sélectionnée</string>
 </resources>

@@ -12,14 +12,15 @@ import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
  */
 public class MyApplication extends Application {
 
+    private static final String PREFERENCES_KEY = "bartender_settings";
+    private static final String KEY_LOGIN = "utilisateur.login";
+    private static final String KEY_MOT_DE_PASSE = "utilisateur.mot_de_passe";
+    private static final String KEY_COMMANDE_ACTUELLE = "commande_actuelle";
+
     private DatabaseHelper mDbHelper;
 
     private Utilisateur mUtilisateurConnecte = null;
-
-    private static final String PREFERENCES_KEY = "bartender_settings";
-
-    private static final String KEY_LOGIN = "utilisateur.login";
-    private static final String KEY_MOT_DE_PASSE = "utilisateur.mot_de_passe";
+    private int mCommandeActuelle = 0;
 
     @Override
     public void onCreate() {
@@ -32,6 +33,7 @@ public class MyApplication extends Application {
         SharedPreferences settings = getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE);
         String login = settings.getString(KEY_LOGIN, "");
         String motDePasse = settings.getString(KEY_MOT_DE_PASSE, "");
+        mCommandeActuelle = settings.getInt(KEY_COMMANDE_ACTUELLE, 0);
 
         connexion(login, motDePasse, false);
     }
@@ -85,5 +87,17 @@ public class MyApplication extends Application {
 
     public Utilisateur utilisateurConnecte() {
         return mUtilisateurConnecte;
+    }
+
+    public int commandeActuelle() {
+        return mCommandeActuelle;
+    }
+
+    public void setCommandeActuelle(int commandeActuelle) {
+        mCommandeActuelle = commandeActuelle;
+
+        SharedPreferences.Editor editor = getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE).edit();
+        editor.putInt(KEY_COMMANDE_ACTUELLE, commandeActuelle);
+        editor.apply();
     }
 }
