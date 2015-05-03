@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
+import lsin1225.uclouvain.be.bartenders.dao.UtilisateurDao;
+import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
 
 
 /**
@@ -21,8 +23,6 @@ public class LoginActivity extends Activity {
     // UI references.
     private EditText mLoginView;
     private EditText mMotDePasseView;
-    private Button mConnexionBouton;
-    private View mConnexionEchoueeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +31,6 @@ public class LoginActivity extends Activity {
 
         mLoginView = (EditText) findViewById(R.id.nom_utilisateur);
         mMotDePasseView = (EditText) findViewById(R.id.mot_de_passe);
-        mConnexionBouton = (Button) findViewById(R.id.connexion_bouton);
-        mConnexionEchoueeView = findViewById(R.id.connexion_echouee);
 
         // Si un utilisateur est déjà connecté, on passe directement à l'activité Dispatch
         if (((MyApplication) getApplication()).utilisateurConnecte() != null) {
@@ -57,15 +55,23 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent(this, DispatchActivity.class);
             startActivity(intent);
         } else {
-            // Afficher un toast indiquant que la connexion a échoué
-            Toast.makeText(getApplicationContext(), getString(R.string.alert_connexion_echouee),
-                    Toast.LENGTH_SHORT).show();
-
-            // Rendre visible le message d'erreur
-            mConnexionEchoueeView.setVisibility(View.VISIBLE);
+            // Si la connexion a échoué, indiquer un message d'erreur sur les champs
+            mLoginView.setError(getString(R.string.error_connexion_echouee));
+            mMotDePasseView.setError(getString(R.string.error_connexion_echouee));
 
             // Vider le champ mot de passe
             mMotDePasseView.setText("");
         }
     }
+
+    public void inscription(View view) {
+        NouvelUtilisateurDialogFragment.newInstance(
+                mLoginView.getText().toString(),
+                mMotDePasseView.getText().toString()
+        ).show(
+                getFragmentManager(),
+                "nouvel_utilisateur"
+        );
+    }
+
 }

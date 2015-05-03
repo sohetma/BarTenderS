@@ -1,9 +1,11 @@
-package lsin1225.uclouvain.be.bartenders;
+package lsin1225.uclouvain.be.bartenders.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import lsin1225.uclouvain.be.bartenders.R;
 
 /**
  * Histoires d'utilisateur :

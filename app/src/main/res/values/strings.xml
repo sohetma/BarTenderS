@@ -25,4 +25,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_mon_compte">Mon compte</string>
     <string name="title_activity_salle">Visualisation de la salle</string>
+    <string name="hint_mot_de_passe2">Mot de passe (à nouveau)</string>
+    <string name="erreur_login_deja_pris">Un utilisateur possède déjà ce login</string>
+    <string name="hint_nom">Prénom Nom</string>
+    <string name="action_valider">Valider</string>
+    <string name="erreur_mot_de_passes_differents">Les mots de passes sont différents</string>
+    <string name="erreur_champ_vide">Ce champ ne peut pas être vide</string>
+    <string name="erreur_champ_trop_court">Veuillez entrer au minimum %d caractères</string>
+    <string name="erreur_champ_trop_long">Veuillez entrer au maximum %d caractères</string>
+    <string name="alert_inscription_reussie">Inscription réussie !</string>
 </resources>
