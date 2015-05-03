@@ -9,11 +9,18 @@
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
-    <TableLayout
+    <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:id="@+id/table"
-        android:stretchColumns="1"
-        android:shrinkColumns="1"></TableLayout>
+        android:id="@android:id/list"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/error_liste_commandes_vide"
+        android:id="@+id/empty"
+        android:layout_gravity="bottom" />
+
 </LinearLayout>

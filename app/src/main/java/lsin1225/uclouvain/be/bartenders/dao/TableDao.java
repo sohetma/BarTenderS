@@ -70,8 +70,30 @@ public class TableDao extends Dao<Table> {
                 }
         );
 
-        cursor.moveToNext();
-        int retval =  cursor.getInt(0);
+        int retval = 0;
+        if (cursor.moveToNext()) {
+            retval = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return retval;
+    }
+
+    public Table tableCommande(int numero_commande) {
+        Cursor cursor = db.rawQuery("SELECT t.*" +
+                        " FROM \"" + TABLE_TABLE + "\" t" +
+                        " LEFT JOIN " + TABLE_COMMANDE + " c" +
+                        " ON c." + COL_NUMERO_TABLE + " = t." + COL_NUMERO_TABLE +
+                        " WHERE c." + COL_NUMERO_COMMANDE + " = ?",
+                new String[]{
+                        Integer.toString(numero_commande)
+                }
+        );
+
+        Table retval = null;
+        if (cursor.moveToNext()) {
+            retval = cursorToRow(cursor);
+        }
 
         cursor.close();
         return retval;

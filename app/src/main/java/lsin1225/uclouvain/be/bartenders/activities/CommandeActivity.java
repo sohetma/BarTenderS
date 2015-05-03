@@ -2,7 +2,6 @@ package lsin1225.uclouvain.be.bartenders.activities;
 
 import android.app.ListActivity;
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +17,6 @@ import java.util.List;
 import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.CommandeDao;
-import lsin1225.uclouvain.be.bartenders.model.Boisson;
 import lsin1225.uclouvain.be.bartenders.model.Commande;
 
 /**
@@ -31,7 +28,7 @@ public class CommandeActivity extends ListActivity {
 
     private class BoissonCommandeListAdapter extends ArrayAdapter<Commande.BoissonCommande> {
 
-        private static final int resource = R.layout.commande_row;
+        private static final int resource = R.layout.row_boisson_commande;
 
         private final Context context;
         private final List<Commande.BoissonCommande> values;

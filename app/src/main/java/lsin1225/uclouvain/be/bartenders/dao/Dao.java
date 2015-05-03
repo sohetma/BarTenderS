@@ -50,7 +50,7 @@ abstract public class Dao<T extends Row> {
     public void remove(T row) {
         ContentValues values = rowToContentValues(row);
         db.delete(tableName,
-                idColumn+"=?", new String[]{values.getAsString(idColumn)});
+                idColumn + "=?", new String[]{values.getAsString(idColumn)});
     }
 
     public T find(String id) {
@@ -63,20 +63,25 @@ abstract public class Dao<T extends Row> {
             retval = cursorToRow(cursor);
         }
         if (retval == null) {
-            Log.e("Dao.find", "retval == null");
+            Log.e("Dao.find", tableName + ": retval == null");
         }
 
         cursor.close();
         return retval;
     }
 
-    public List<T> findAll() {
-        Cursor cursor = db.query(tableName, null,
-                null, null,
-                null, null, null);
+    public List<T> findAll(boolean desc) {
+        Cursor cursor = db.query(
+                tableName,
+                null, null, null, null, null,
+                idColumn + (desc ? " DESC " : ""));
         List<T> retval = cursorToRows(cursor);
 
         cursor.close();
         return retval;
+    }
+
+    public List<T> findAll() {
+        return findAll(false);
     }
 }

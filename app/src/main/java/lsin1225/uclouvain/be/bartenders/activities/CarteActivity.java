@@ -3,8 +3,6 @@ package lsin1225.uclouvain.be.bartenders.activities;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +35,7 @@ public class CarteActivity extends ListActivity {
 
     private class BoissonListAdapter extends ArrayAdapter<Boisson> {
 
-        private static final int resource = R.layout.carte_row;
+        private static final int resource = R.layout.row_carte;
 
         private final Context context;
         private final ArrayList<Boisson> values;

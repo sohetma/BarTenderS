@@ -33,10 +33,10 @@ public class DispatchActivity extends Activity {
         }
     };
 
-    private OnClickListener clickListenerBoutonAdd = new View.OnClickListener() {
+    private OnClickListener clickListenerBoutonListeCommandes = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            addition(v);
+            listeCommandes(v);
         }
     };
 
@@ -54,29 +54,23 @@ public class DispatchActivity extends Activity {
         }
     };
 
-    Button car = null;
-    Button com = null;
-    Button add = null;
-    Button inv = null;
-    Button deco = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispatch);
 
-        car = (Button)findViewById(R.id.carte_bouton);
-        com = (Button)findViewById(R.id.commande_bouton);
-        add = (Button)findViewById(R.id.addition_bouton);
-        inv = (Button)findViewById(R.id.inventaire_bouton);
-        deco = (Button)findViewById(R.id.deconnexion_bouton);
+        Button carteBouton = (Button) findViewById(R.id.carte_bouton);
+        Button commandeBouton = (Button) findViewById(R.id.commande_bouton);
+        Button listeCommandesBouton = (Button) findViewById(R.id.liste_commandes_bouton);
+        Button inventaireBouton = (Button) findViewById(R.id.inventaire_bouton);
+        Button deconnexionBouton = (Button) findViewById(R.id.deconnexion_bouton);
 
-        car.setOnClickListener(clickListenerBoutonCar);
-        com.setOnClickListener(clickListenerBoutonCom);
-        add.setOnClickListener(clickListenerBoutonAdd);
-        inv.setOnClickListener(clickListenerBoutonInv);
-        deco.setOnClickListener(clickListenerBoutonDeco);
+        carteBouton.setOnClickListener(clickListenerBoutonCar);
+        commandeBouton.setOnClickListener(clickListenerBoutonCom);
+        listeCommandesBouton.setOnClickListener(clickListenerBoutonListeCommandes);
+        inventaireBouton.setOnClickListener(clickListenerBoutonInv);
+        deconnexionBouton.setOnClickListener(clickListenerBoutonDeco);
     }
 
 
@@ -105,10 +99,10 @@ public class DispatchActivity extends Activity {
 
 
     /**
-     * Lance l'activité de récuppération de l'addition.
+     * Lance l'activité d'affichage de la liste des commandes.
      */
-    public void addition(View v) {
-        Intent intent = new Intent(this, AdditionActivity.class);
+    public void listeCommandes(View v) {
+        Intent intent = new Intent(this, ListeCommandesActivity.class);
         startActivity(intent);
     }
 

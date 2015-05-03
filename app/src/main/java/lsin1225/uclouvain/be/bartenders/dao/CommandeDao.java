@@ -130,7 +130,6 @@ public class CommandeDao extends Dao<Commande> {
         );
 
         float retval = 0;
-        cursor.moveToNext();
         if (cursor.moveToNext()) {
             retval = cursor.getInt(0);
         }

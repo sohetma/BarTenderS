@@ -34,4 +34,12 @@
     <string name="erreur_champ_trop_court">Veuillez entrer au minimum %d caractères</string>
     <string name="erreur_champ_trop_long">Veuillez entrer au maximum %d caractères</string>
     <string name="alert_inscription_reussie">Inscription réussie !</string>
+    <string name="header_numero_commande">N°</string>
+    <string name="header_numero_table">Table</string>
+    <string name="header_addition">Addition</string>
+    <string name="header_est_payee">Payée</string>
+    <string name="label_est_payee_true">Oui</string>
+    <string name="label_est_payee_false">Non</string>
+    <string name="title_liste_commandes">Liste des commandes</string>
+    <string name="error_liste_commandes_vide">Aucune commande n\'a été enregistrée</string>
 </resources>

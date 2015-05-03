@@ -44,8 +44,8 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_activity_addition"
-            android:id="@+id/addition_bouton"
+            android:text="@string/title_liste_commandes"
+            android:id="@+id/liste_commandes_bouton"
             android:textSize="@dimen/dispatch_text_size"
             android:padding="15dp"
             android:layout_marginTop="5dp"

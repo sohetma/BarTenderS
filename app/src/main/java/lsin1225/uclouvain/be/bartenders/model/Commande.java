@@ -3,6 +3,7 @@ import java.util.List;
 
 import lsin1225.uclouvain.be.bartenders.dao.CommandeDao;
 import lsin1225.uclouvain.be.bartenders.dao.Dao;
+import lsin1225.uclouvain.be.bartenders.dao.TableDao;
 
 /**
  * TODO changer l'arraylist de Boisson en arraylist de EntréeCommande,
@@ -74,6 +75,10 @@ public class Commande extends Row {
      */
     public float addition(){
         return CommandeDao.instance().addition(this.numero);
+    }
+
+    public Table table() {
+        return TableDao.instance().tableCommande(this.numero);
     }
 
 
