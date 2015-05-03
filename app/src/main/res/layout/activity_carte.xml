@@ -10,6 +10,19 @@
     android:orientation="vertical"
     android:id="@+id/main">
 
+    <EditText
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:hint="Boisson"
+        android:id="@+id/editText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rechercher"
+        android:id="@+id/button" />
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

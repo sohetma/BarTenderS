@@ -112,6 +112,14 @@ public class Boisson extends Row {
         BoissonDao.instance().removeEvaluation(this.nom, evaluation.utilisateur().login());
     }
 
+    /**
+     * renvoie vrai si le String passé en argument est présent dans le nom, la description ou le nom
+     * de la catégorie, et faux sinon
+     */
+    public boolean contains(String recherche){
+        return (nom.contains(recherche) || description.contains (recherche) || categorie.nom().contains(recherche));
+    }
+
     public String nom() {
         return nom;
     }
