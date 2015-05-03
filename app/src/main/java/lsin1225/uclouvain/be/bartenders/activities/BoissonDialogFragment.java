@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
@@ -61,6 +63,8 @@ public class BoissonDialogFragment extends DialogFragment {
             return null;
         }
 
+        setupEvaluation(dialogView, boisson);
+
         nomView.setText(boisson.nom());
         if (!boisson.description().isEmpty()) {
             descriptionView.setText(boisson.description());
@@ -95,5 +99,23 @@ public class BoissonDialogFragment extends DialogFragment {
                 });
 
         return builder.create();
+    }
+
+    private void setupEvaluation(View view, final Boisson boisson) {
+        RatingBar evaluationView = (RatingBar) view.findViewById(R.id.evaluation);
+
+        evaluationView.setRating(boisson.evaluationMoyenne());
+
+        evaluationView.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float score,
+                                        boolean fromUser) {
+
+                Boisson.Evaluation evaluation = new Boisson.Evaluation(
+                        Math.round(score),
+                        ((MyApplication) getActivity().getApplication()).utilisateurConnecte()
+                );
+                boisson.ajouterEvaluation(evaluation);
+            }
+        });
     }
 }

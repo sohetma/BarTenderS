@@ -19,7 +19,7 @@ public class Boisson extends Row {
     private int stockMax;
     private int stockSeuil;
 
-    public class Evaluation {
+    public static class Evaluation {
         private static final int NOTE_MAX = 5;
 
         private int score;

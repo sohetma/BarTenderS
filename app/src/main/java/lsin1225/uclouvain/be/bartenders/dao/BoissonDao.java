@@ -2,6 +2,9 @@ package lsin1225.uclouvain.be.bartenders.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.List;
 
@@ -68,7 +71,11 @@ public class BoissonDao extends Dao<Boisson> {
         values.put(COL_NOM_BOISSON, nom_boisson);
         values.put(COL_LOGIN, login);
         values.put(COL_SCORE, score);
-        db.insert(TABLE_EVALUATION, null, values);
+
+        // On ajoute l'évaluation à la base de donnée, en spécifiant que, si une évaluation est déjà
+        // présente pour ce couple boisson-utilisateur, l'ancienne doit être écrasée pour être
+        // remplacée par la plus récente (c'est l'action de SQLiteDatabase.CONFLICT_REPLACE)
+        db.insertWithOnConflict(TABLE_EVALUATION, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public void removeEvaluation(String nom_boisson, String login) {
@@ -82,16 +89,22 @@ public class BoissonDao extends Dao<Boisson> {
     }
 
     public int evaluationMoyenne(String nom_boisson) {
-        Cursor cursor = db.rawQuery("SELECT Sum(e." + COL_SCORE + ") / Count(e.*)" +
+        Cursor cursor = db.rawQuery("SELECT Sum(e." + COL_SCORE + ") / Count(e." + COL_SCORE + ")" +
                         " FROM " + TABLE_EVALUATION + " e" +
-                        " WHERE e." + nom_boisson + " = ?",
+                        " WHERE e." + COL_NOM_BOISSON + " = ?" +
+                        " GROUP BY e." + COL_NOM_BOISSON,
                 new String[]{
-                        COL_NOM_BOISSON,
-
+                        nom_boisson
                 }
         );
-        cursor.moveToNext();
-        return cursor.getInt(0);
+
+        int retval = 0;
+        if (cursor.moveToNext()) {
+            retval = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return retval;
     }
 
     public List<Boisson> listBoissonsTable(int numero) {
@@ -106,6 +119,9 @@ public class BoissonDao extends Dao<Boisson> {
                 }
         );
 
-        return cursorToRows(cursor);
+        List<Boisson> retval = cursorToRows(cursor);
+
+        cursor.close();
+        return retval;
     }
 }
