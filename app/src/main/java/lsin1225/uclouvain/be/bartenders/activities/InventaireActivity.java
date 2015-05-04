@@ -3,7 +3,6 @@ package lsin1225.uclouvain.be.bartenders.activities;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,10 +41,10 @@ public class InventaireActivity extends ListActivity {
         private final Context context;
         private final ArrayList<Boisson> values;
 
-        public BoissonListAdapter(Context context, List<Boisson> values) {
+        public BoissonListAdapter(Context context, ArrayList<Boisson> values) {
             super(context, resource, values);
             this.context = context;
-            this.values = new ArrayList<Boisson>(values);
+            this.values = values;
         }
 
         @Override
@@ -122,7 +121,7 @@ public class InventaireActivity extends ListActivity {
         aRechercher=(EditText) findViewById(R.id.editText);
 
         boissonsOriginal = BoissonDao.instance().findAll();
-        List<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
+        ArrayList<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
 
         adapter = new BoissonListAdapter(this, boissons);
 
