@@ -31,8 +31,8 @@ public class InventaireDialogFragment extends DialogFragment {
 
     private static final String ARG_NOM_BOISSON = "nom_boisson";
 
-    public static BoissonDialogFragment newInstance(String nomBoisson) {
-        BoissonDialogFragment f = new BoissonDialogFragment();
+    public static InventaireDialogFragment newInstance(String nomBoisson) {
+        InventaireDialogFragment f = new InventaireDialogFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_NOM_BOISSON, nomBoisson);

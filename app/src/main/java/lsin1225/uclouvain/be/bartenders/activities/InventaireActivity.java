@@ -122,7 +122,7 @@ public class InventaireActivity extends ListActivity {
         aRechercher=(EditText) findViewById(R.id.editText);
 
         boissonsOriginal = BoissonDao.instance().findAll();
-        List<Boisson> boissons=boissonsOriginal;
+        List<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
 
         adapter = new BoissonListAdapter(this, boissons);
 
