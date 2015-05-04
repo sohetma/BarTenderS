@@ -54,6 +54,13 @@ public class DispatchActivity extends Activity {
         }
     };
 
+    private OnClickListener clickListenerBoutonCompte = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            monCompte(v);
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +72,14 @@ public class DispatchActivity extends Activity {
         Button listeCommandesBouton = (Button) findViewById(R.id.liste_commandes_bouton);
         Button inventaireBouton = (Button) findViewById(R.id.inventaire_bouton);
         Button deconnexionBouton = (Button) findViewById(R.id.deconnexion_bouton);
+        Button monCompteBouton = (Button) findViewById(R.id.compte_bouton);
 
         carteBouton.setOnClickListener(clickListenerBoutonCar);
         commandeBouton.setOnClickListener(clickListenerBoutonCom);
         listeCommandesBouton.setOnClickListener(clickListenerBoutonListeCommandes);
         inventaireBouton.setOnClickListener(clickListenerBoutonInv);
         deconnexionBouton.setOnClickListener(clickListenerBoutonDeco);
+        monCompteBouton.setOnClickListener(clickListenerBoutonCompte);
     }
 
 
@@ -130,5 +139,13 @@ public class DispatchActivity extends Activity {
 
         // Ferme l'activité de dispatch
         finish();
+    }
+
+    /**
+     * Ouvre les paramètres du compte
+     */
+    public void monCompte(View v) {
+        Intent intent = new Intent(this, MonCompteActivity.class);
+        startActivity(intent);
     }
 }
