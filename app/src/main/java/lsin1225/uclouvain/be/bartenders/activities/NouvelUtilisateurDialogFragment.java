@@ -86,14 +86,3 @@ public class NouvelUtilisateurDialogFragment extends DialogFragment implements C
         dismiss();
     }
 }
-
-/*
-        Utilisateur utilisateur
-                = UtilisateurDao.instance().find(mLoginView.getText().toString());
-
-        if (utilisateur != null) {
-            Toast.makeText(getApplicationContext(), getString(R.string.erreur_login_deja_pris),
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-        */

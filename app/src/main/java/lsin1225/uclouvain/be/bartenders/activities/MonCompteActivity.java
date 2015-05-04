@@ -17,6 +17,7 @@ import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
 /**
  * Histoires d'utilisateur :
  * - mettre à jour les informations personnelles de mon compte
+ *
  */
 public class MonCompteActivity extends Activity implements Closable {
 

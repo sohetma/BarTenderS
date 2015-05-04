@@ -16,6 +16,7 @@ import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
  * Effectue toutes les vérifications nécéssaires à la création ou la modification d'un utilisateur.
  * Si utilisateur = null, un nouvel utilisateur sera créé,
  * Si utilisateur ≠ null, il sera modifié.
+ *
  */
 public class NouvelUtilisateurClickListener implements View.OnClickListener {
 
