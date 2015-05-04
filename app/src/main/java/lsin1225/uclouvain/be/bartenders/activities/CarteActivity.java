@@ -86,9 +86,9 @@ public class CarteActivity extends ListActivity {
                 adapter.addAll(boissonsOriginal);
             }
             else {
-                for (int i = 1; i <= boissonsOriginal.size(); i++) {
-                    if (boissonsOriginal.get(i).contains(nomBoisson)) {
-                        adapter.add(boissonsOriginal.get(i));
+                for (Boisson boisson : boissonsOriginal) {
+                    if (boisson.contains(nomBoisson)) {
+                        adapter.add(boisson);
                     }
                 }
             }
