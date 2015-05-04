@@ -138,8 +138,9 @@ public class NouvelUtilisateurClickListener implements View.OnClickListener {
 
         utilisateur.save();
 
-
         Toast.makeText(context, context.getString(R.string.alert_inscription_reussie),
                 Toast.LENGTH_SHORT).show();
+
+        closable.closeIt();
     }
 }
