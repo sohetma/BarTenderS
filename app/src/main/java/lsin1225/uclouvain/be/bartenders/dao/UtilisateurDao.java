@@ -34,6 +34,8 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                 return 1;
             case GESTIONNAIRE:
                 return 2;
+            default:
+                return 0;
         }
     }
 
@@ -45,6 +47,8 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                 return Utilisateur.Role.SERVEUR;
             case 2:
                 return Utilisateur.Role.GESTIONNAIRE;
+            default:
+                return Utilisateur.Role.CLIENT;
         }
     }
 
