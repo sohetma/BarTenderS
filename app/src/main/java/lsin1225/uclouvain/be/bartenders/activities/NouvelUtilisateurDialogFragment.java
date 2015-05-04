@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import lsin1225.uclouvain.be.bartenders.Closable;
 import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.UtilisateurDao;
 import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
@@ -18,7 +19,7 @@ import lsin1225.uclouvain.be.bartenders.model.Utilisateur;
  * Histoires d'utilisateur :
  * - se créer un compte
  */
-public class NouvelUtilisateurDialogFragment extends DialogFragment {
+public class NouvelUtilisateurDialogFragment extends DialogFragment implements Closable {
     private static final String ARG_LOGIN = "login";
     private static final String ARG_MOT_DE_PASSE = "mot_de_passe";
 
@@ -74,101 +75,16 @@ public class NouvelUtilisateurDialogFragment extends DialogFragment {
                 })
                 .create();
         dialog.show();
-
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                String login = loginView.getText().toString(),
-                        motDePasse = motDePasseView.getText().toString(),
-                        motDePasse2 = motDePasse2View.getText().toString(),
-                        nom = nomView.getText().toString();
-
-                Utilisateur utilisateur
-                        = UtilisateurDao.instance().find(login);
-
-                if (login.isEmpty()) {
-                    loginView.setError(getString(R.string.erreur_champ_vide));
-                    return;
-                }
-                if (motDePasse.isEmpty()) {
-                    motDePasseView.setError(getString(R.string.erreur_champ_vide));
-                    return;
-                }
-                if (nom.isEmpty()) {
-                    nomView.setError(getString(R.string.erreur_champ_vide));
-                    return;
-                }
-
-                if (login.length() < LONGUEUR_LOGIN_MIN) {
-                    loginView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_court),
-                            LONGUEUR_LOGIN_MIN
-                    ));
-                    return;
-                }
-                if (login.length() > LONGUEUR_LOGIN_MAX) {
-                    motDePasseView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_long),
-                            LONGUEUR_LOGIN_MAX
-                    ));
-                    return;
-                }
-
-                if (motDePasse.length() < LONGUEUR_MOT_DE_PASSE_MIN) {
-                    motDePasseView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_court),
-                            LONGUEUR_MOT_DE_PASSE_MIN
-                    ));
-                    return;
-                }
-                if (motDePasse.length() > LONGUEUR_MOT_DE_PASSE_MAX) {
-                    motDePasseView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_long),
-                            LONGUEUR_MOT_DE_PASSE_MAX
-                    ));
-                    return;
-                }
-
-                if (nom.length() < LONGUEUR_NOM_MIN) {
-                    nomView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_court),
-                            LONGUEUR_NOM_MIN
-                    ));
-                    return;
-                }
-                if (nom.length() > LONGUEUR_NOM_MAX) {
-                    nomView.setError(String.format(
-                            getString(R.string.erreur_champ_trop_long),
-                            LONGUEUR_NOM_MAX
-                    ));
-                    return;
-                }
-
-                if (utilisateur != null) {
-                    loginView.setError(getString(R.string.erreur_login_deja_pris));
-                    return;
-                }
-
-                if (!motDePasse.equals(motDePasse2)) {
-                    motDePasse2View.setError(getString(R.string.erreur_mot_de_passes_differents));
-                    return;
-                }
-
-                utilisateur = new Utilisateur(login, motDePasse, nom, Utilisateur.Role.CLIENT);
-                utilisateur.save();
-
-                dialog.dismiss();
-
-                Toast.makeText(dialog.getContext(), getString(R.string.alert_inscription_reussie),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(
+                new NouvelUtilisateurClickListener(loginView, motDePasseView, motDePasse2View, nomView, null, getActivity(), this));
 
         return dialog;
     }
 
+    @Override
+    public void closeIt() {
+        dismiss();
+    }
 }
 
 /*
