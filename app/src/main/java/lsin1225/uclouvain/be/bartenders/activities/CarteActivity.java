@@ -29,13 +29,6 @@ import lsin1225.uclouvain.be.bartenders.model.Boisson;
  */
 public class CarteActivity extends ListActivity {
 
-    private EditText aRechercher;
-
-    private List<Boisson> boissonsOriginal;
-
-
-    private BoissonListAdapter adapter;
-
     private class BoissonListAdapter extends ArrayAdapter<Boisson> {
 
         private static final int resource = R.layout.row_carte;
@@ -61,8 +54,8 @@ public class CarteActivity extends ListActivity {
 
             nomView.setText(values.get(position).nom());
             prixView.setText(String.format(
-                    getString(R.string.format_prix),
-                    values.get(position).prix())
+                            getString(R.string.format_prix),
+                            values.get(position).prix())
             );
 
             int imageid = getResources().getIdentifier(
@@ -77,32 +70,11 @@ public class CarteActivity extends ListActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carte);
+    private EditText aRechercher;
 
-        aRechercher=(EditText) findViewById(R.id.editText);
+    private List<Boisson> boissonsOriginal;
 
-        boissonsOriginal = BoissonDao.instance().findAll();
-        List<Boisson> boissons=boissonsOriginal;
-
-        adapter = new BoissonListAdapter(this, boissons);
-
-        setListAdapter(adapter);
-        aRechercher.addTextChangedListener(textWatcher);
-    }
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
-
-        BoissonDialogFragment.newInstance(boisson.nom()).show(
-                getFragmentManager(),
-                "boisson"
-        );
-    }
-
+    private BoissonListAdapter adapter;
 
     private TextWatcher textWatcher = new TextWatcher() {
 
@@ -134,4 +106,31 @@ public class CarteActivity extends ListActivity {
 
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_carte);
+
+        aRechercher=(EditText) findViewById(R.id.editText);
+
+        boissonsOriginal = BoissonDao.instance().findAll();
+        List<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
+
+        adapter = new BoissonListAdapter(this, boissons);
+
+        setListAdapter(adapter);
+        aRechercher.addTextChangedListener(textWatcher);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
+
+        BoissonDialogFragment.newInstance(boisson.nom()).show(
+                getFragmentManager(),
+                "boisson"
+        );
+    }
+
 }
