@@ -55,7 +55,7 @@ public class CommandeDao extends Dao<Commande> {
         values.put(COL_NUMERO_COMMANDE, numero_commande);
         values.put(COL_NOM_BOISSON, nom_boisson);
         values.put(COL_QUANTITE, quantite);
-        if (db.insert(tableName, null, values) == -1) { // Le couple commande-boisson existe déjà
+        if (db.insert(TABLE_BOISSON_COMMANDE, null, values) == -1) { // Le couple commande-boisson existe déjà
             db.execSQL("UPDATE " + TABLE_BOISSON_COMMANDE + "" +
                             " SET " + COL_QUANTITE + "=(" + COL_QUANTITE + "+" + Integer.toString(quantite) + ")" +
                             " WHERE " + COL_NUMERO_COMMANDE + " = ?" +

@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.BoissonDao;
+import lsin1225.uclouvain.be.bartenders.dao.CommandeDao;
 import lsin1225.uclouvain.be.bartenders.model.Boisson;
+import lsin1225.uclouvain.be.bartenders.model.Commande;
 
 /**
  * Histoires d'utilisateur :
@@ -55,7 +58,7 @@ public class BoissonDialogFragment extends DialogFragment {
         ImageView imageView = (ImageView) dialogView.findViewById(R.id.icone);
 
         String nom_boisson = getArguments().getString("nom_boisson");
-        Boisson boisson;
+        final Boisson boisson;
         if (nom_boisson != null) {
             boisson = BoissonDao.instance().find(nom_boisson);
         } else {
@@ -89,7 +92,19 @@ public class BoissonDialogFragment extends DialogFragment {
         builder.setView(dialogView)
                 .setPositiveButton(R.string.action_ajouter, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO ajouter à la commande
+                        Commande commande = CommandeDao.instance().find(
+                                ((MyApplication) getActivity().getApplication()).commandeActuelle());
+
+                        commande.ajouterBoisson(boisson, 1);
+
+                        Toast.makeText(
+                                BoissonDialogFragment.this.getDialog().getContext(),
+                                String.format(
+                                        getString(R.string.alert_boisson_ajoutee_singulier),
+                                        1, boisson.nom(), commande.numero()
+                                ),
+                                Toast.LENGTH_SHORT
+                        ).show();
                     }
                 })
                 .setNegativeButton(R.string.action_retour, new DialogInterface.OnClickListener() {
