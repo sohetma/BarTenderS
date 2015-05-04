@@ -36,10 +36,10 @@ public class CarteActivity extends ListActivity {
         private final Context context;
         private final ArrayList<Boisson> values;
 
-        public BoissonListAdapter(Context context, List<Boisson> values) {
+        public BoissonListAdapter(Context context, ArrayList<Boisson> values) {
             super(context, resource, values);
             this.context = context;
-            this.values = new ArrayList<Boisson>(values);
+            this.values = values;
         }
 
         @Override
