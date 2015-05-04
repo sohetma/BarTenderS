@@ -36,10 +36,10 @@ public class CarteActivity extends ListActivity {
         private final Context context;
         private final ArrayList<Boisson> values;
 
-        public BoissonListAdapter(Context context, List<Boisson> values) {
+        public BoissonListAdapter(Context context, ArrayList<Boisson> values) {
             super(context, resource, values);
             this.context = context;
-            this.values = new ArrayList<Boisson>(values);
+            this.values = values;
         }
 
         @Override
@@ -115,7 +115,7 @@ public class CarteActivity extends ListActivity {
         aRechercher=(EditText) findViewById(R.id.editText);
 
         boissonsOriginal = BoissonDao.instance().findAll();
-        List<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
+        ArrayList<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
 
         adapter = new BoissonListAdapter(this, boissons);
 
