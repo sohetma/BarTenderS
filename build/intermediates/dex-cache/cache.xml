@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-cac40fee4982420323a2c5c4e6d8693a7d7ed781.jar" />
-    </item>
-    <item
-        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-5bd9a29448199f497aa677a62278fa4b8cb5b991.jar" />
-    </item>
-    <item
-        jar="/home/xavier/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="/home/alex/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-e877f017f677c7bc6d7e2b58853e8788d1355e3f.jar" />
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-afe311c67ba4667e357d84b76134a38b9f54c3dd.jar" />
     </item>
     <item
-        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/classes-fab598cce8937f9c42118db1f9b40beb3b1e3c82.jar" />
+    </item>
+    <item
+        jar="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/classes-1864d43c9ea830e5c0044600edf75373ce7160e5.jar" />
+    </item>
+    <item
+        jar="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/classes-a6cfd5fcc1a12012dc2cad7f3887bd20ff0c7a6e.jar" />
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/classes-217e56988502507a6eb87e5778631de9540bd98a.jar" />
     </item>
     <item
-        jar="/home/xavier/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-b7cabbb0f445f26bb84b9278b07fc3451c655591.jar" />
-    </item>
-    <item
-        jar="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/xavier/ucl/q4/coo/bartender/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-126c966e8888d48b6b5346097c97997610374888.jar" />
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-de5aff75bcea85abb6f80e33d7fb7f4dddd0dd4d.jar" />
+    </item>
+    <item
+        jar="/home/alex/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
+        <dex dex="/home/alex/Documents/epl/Q4/COO/BarTenderS/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-52ba810bc0542001009002bafbc243a6fa4623a8.jar" />
     </item>
 
 </items>

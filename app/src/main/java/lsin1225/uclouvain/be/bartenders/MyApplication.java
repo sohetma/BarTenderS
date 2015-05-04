@@ -20,7 +20,7 @@ public class MyApplication extends Application {
     private DatabaseHelper mDbHelper;
 
     private Utilisateur mUtilisateurConnecte = null;
-    private int mCommandeActuelle = 0;
+    private long mCommandeActuelle = 0;
 
     @Override
     public void onCreate() {
@@ -33,7 +33,7 @@ public class MyApplication extends Application {
         SharedPreferences settings = getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE);
         String login = settings.getString(KEY_LOGIN, "");
         String motDePasse = settings.getString(KEY_MOT_DE_PASSE, "");
-        mCommandeActuelle = settings.getInt(KEY_COMMANDE_ACTUELLE, 0);
+        mCommandeActuelle = settings.getLong(KEY_COMMANDE_ACTUELLE, 0);
 
         connexion(login, motDePasse, false);
     }
@@ -89,15 +89,15 @@ public class MyApplication extends Application {
         return mUtilisateurConnecte;
     }
 
-    public int commandeActuelle() {
+    public long commandeActuelle() {
         return mCommandeActuelle;
     }
 
-    public void setCommandeActuelle(int commandeActuelle) {
+    public void setCommandeActuelle(long commandeActuelle) {
         mCommandeActuelle = commandeActuelle;
 
         SharedPreferences.Editor editor = getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE).edit();
-        editor.putInt(KEY_COMMANDE_ACTUELLE, commandeActuelle);
+        editor.putLong(KEY_COMMANDE_ACTUELLE, commandeActuelle);
         editor.apply();
     }
 }

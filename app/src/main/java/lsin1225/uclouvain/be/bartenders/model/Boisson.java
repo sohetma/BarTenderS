@@ -117,7 +117,7 @@ public class Boisson extends Row {
      * de la catégorie, et faux sinon
      */
     public boolean contains(String recherche){
-        return (nom.contains(recherche) || description.contains (recherche) || categorie.nom().contains(recherche));
+        return ((nom.toLowerCase()).contains(recherche.toLowerCase()) || (categorie.nom()).toLowerCase().contains(recherche.toLowerCase()));
     }
 
     public String nom() {

@@ -6,14 +6,13 @@ import lsin1225.uclouvain.be.bartenders.dao.Dao;
  * Created by xavier on 28/04/15.
  */
 public abstract class Row {
-    private boolean saved = false;
+    protected long rowid = 0;
 
     abstract protected Dao defaultDao();
 
     public void save() {
-        if (!saved) {
-            defaultDao().insert(this);
-            saved = true;
+        if (rowid == 0) {
+            rowid = defaultDao().insert(this);
         } else {
             defaultDao().update(this);
         }

@@ -1,13 +1,12 @@
 package lsin1225.uclouvain.be.bartenders.activities;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import lsin1225.uclouvain.be.bartenders.MyApplication;
 import lsin1225.uclouvain.be.bartenders.R;
 import lsin1225.uclouvain.be.bartenders.dao.CommandeDao;
 import lsin1225.uclouvain.be.bartenders.model.Commande;
@@ -27,7 +27,7 @@ import lsin1225.uclouvain.be.bartenders.model.Commande;
  * - enregistrer une nouvelle commande
  * - associer une commande à une table
  */
-public class ListeCommandesActivity extends Activity {
+public class ListeCommandesActivity extends TableActivity {
 
     private class CommandeTableAdapter extends ArrayAdapter<Commande> {
 
@@ -53,8 +53,12 @@ public class ListeCommandesActivity extends Activity {
             TextView additionView = (TextView) rowView.findViewById(R.id.addition);
             CheckBox estPayeeView = (CheckBox) rowView.findViewById(R.id.est_payee);
 
-            numeroCommandeView.setText(Integer.toString(values.get(position).numero()));
-            numeroTableView.setText(Integer.toString(values.get(position).table().numero()));
+            numeroCommandeView.setText(Long.toString(values.get(position).numero()));
+            if (values.get(position).table() == null) {
+                numeroTableView.setText(getString(R.string.label_pas_de_table));
+            } else {
+                numeroTableView.setText(Long.toString(values.get(position).table().numero()));
+            }
             additionView.setText(String.format(
                             getString(R.string.format_prix),
                             values.get(position).addition())
@@ -70,6 +74,7 @@ public class ListeCommandesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_commandes);
 
+
         List<Commande> commandes = CommandeDao.instance().findAll(true);
 
         CommandeTableAdapter adapter = new CommandeTableAdapter(this, commandes);
@@ -81,29 +86,29 @@ public class ListeCommandesActivity extends Activity {
         setTableAdapter(adapter);
     }
 
-    private void setTableAdapter(Adapter adapter) {
-        TableLayout tableLayout = getTableView();
-        for (int i = 0; i < adapter.getCount(); i++) {
-            tableLayout.addView(adapter.getView(i, null, tableLayout));
-            tableLayout.addView(getSeparatorView());
-        }
+    public void onNouvelleCommandeClick(View v) {
+        Commande commande = new Commande();
+        commande.save();
+
+        ouvrirCommande(commande);
     }
 
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        //Commande commande = (Commande) getListView().getItemAtPosition(position);
+    @Override
+    protected void onTableItemClick(TableLayout t, Adapter adapter, View v, int position, long id) {
+        Commande commande = (Commande) adapter.getItem(position);
 
-        // TODO
+        ouvrirCommande(commande);
     }
 
-    protected TableLayout getTableView() {
-        return (TableLayout) findViewById(R.id.table);
-    }
+    private void ouvrirCommande(Commande commande) {
+        ((MyApplication) getApplication()).setCommandeActuelle(commande.numero());
 
-    protected View getSeparatorView() {
-        TextView separator = new TextView(this);
-        separator.setBackgroundColor(Color.parseColor("#80808080"));
-        separator.setHeight(1);
+        // Lance l'activité d'affichage de commande
+        Intent intent = new Intent(this, CommandeActivity.class);
+        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
 
-        return separator;
+        // Ferme cette activité
+        finish();
     }
 }

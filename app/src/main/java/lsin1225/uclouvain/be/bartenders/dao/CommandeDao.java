@@ -30,7 +30,9 @@ public class CommandeDao extends Dao<Commande> {
     protected ContentValues rowToContentValues(Commande commande) {
         ContentValues values = new ContentValues();
 
-        values.put(COL_NUMERO_COMMANDE, commande.numero());
+        if (commande.numero() != 0) {
+            values.put(COL_NUMERO_COMMANDE, commande.numero());
+        }
         values.put(COL_PAYEE, commande.estPayee());
 
         return values;
@@ -48,47 +50,43 @@ public class CommandeDao extends Dao<Commande> {
         }
     }
 
-    public Commande find(int numero) {
-        return this.find(Integer.toString(numero));
-    }
-
-    public void addBoisson(int numero_commande, String nom_boisson, int quantite) {
+    public void addBoisson(long numero_commande, String nom_boisson, int quantite) {
         ContentValues values = new ContentValues();
         values.put(COL_NUMERO_COMMANDE, numero_commande);
         values.put(COL_NOM_BOISSON, nom_boisson);
         values.put(COL_QUANTITE, quantite);
-        if (db.insert(tableName, null, values) == -1) { // Le couple commande-boisson existe déjà
+        if (db.insert(TABLE_BOISSON_COMMANDE, null, values) == -1) { // Le couple commande-boisson existe déjà
             db.execSQL("UPDATE " + TABLE_BOISSON_COMMANDE + "" +
                             " SET " + COL_QUANTITE + "=(" + COL_QUANTITE + "+" + Integer.toString(quantite) + ")" +
                             " WHERE " + COL_NUMERO_COMMANDE + " = ?" +
                             " AND " + COL_NOM_BOISSON + " = ?",
                     new String[]{
-                            Integer.toString(numero_commande),
+                            Long.toString(numero_commande),
                             nom_boisson
                     }
             );
         }
     }
 
-    public void removeBoisson(int numero_commande, String nom_boisson) {
+    public void removeBoisson(long numero_commande, String nom_boisson) {
         db.delete(TABLE_BOISSON_COMMANDE,
                 "?=? AND ?=?", new String[]{
                         COL_NUMERO_COMMANDE,
-                        Integer.toString(numero_commande),
+                        Long.toString(numero_commande),
                         COL_NOM_BOISSON,
                         nom_boisson
                 }
         );
     }
 
-    public List<Commande.BoissonCommande> listBoissonCommande(int numero) {
+    public List<Commande.BoissonCommande> listBoissonCommande(long numero) {
         Cursor cursor = db.rawQuery("SELECT b.*, bc." + COL_QUANTITE + " AS quantite" +
                         " FROM " + TABLE_BOISSON_COMMANDE + " bc" +
                         " LEFT JOIN " + TABLE_BOISSON + " b" +
                         " ON b." + COL_NOM_BOISSON + " = bc." + COL_NOM_BOISSON +
                         " WHERE bc." + COL_NUMERO_COMMANDE + " = ?;",
                 new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 }
         );
 
@@ -105,10 +103,10 @@ public class CommandeDao extends Dao<Commande> {
         return rows;
     }
 
-    public List<Commande> listCommandesTable(int numero) {
+    public List<Commande> listCommandesTable(long numero) {
         Cursor cursor = db.query(TABLE_COMMANDE, null,
                 COL_NUMERO_TABLE + " = ?", new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 },
                 null, null, null);
 
@@ -118,14 +116,14 @@ public class CommandeDao extends Dao<Commande> {
         return retval;
     }
 
-    public float addition(int numero) {
+    public float addition(long numero) {
         Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + " * bc." + COL_QUANTITE + ")" +
                         " FROM " + TABLE_BOISSON + " b" +
                         " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
                         " ON bc." + COL_NOM_BOISSON + " = b." + COL_NOM_BOISSON +
                         " WHERE bc." + COL_NUMERO_COMMANDE + " = ?",
                 new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 }
         );
 

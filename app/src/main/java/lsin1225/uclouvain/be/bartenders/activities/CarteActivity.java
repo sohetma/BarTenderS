@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,13 +30,6 @@ import lsin1225.uclouvain.be.bartenders.model.Boisson;
  */
 public class CarteActivity extends ListActivity {
 
-    private EditText aRechercher;
-
-    private List<Boisson> boissonsOriginal;
-
-
-    private BoissonListAdapter adapter;
-
     private class BoissonListAdapter extends ArrayAdapter<Boisson> {
 
         private static final int resource = R.layout.row_carte;
@@ -43,10 +37,10 @@ public class CarteActivity extends ListActivity {
         private final Context context;
         private final ArrayList<Boisson> values;
 
-        public BoissonListAdapter(Context context, List<Boisson> values) {
+        public BoissonListAdapter(Context context, ArrayList<Boisson> values) {
             super(context, resource, values);
             this.context = context;
-            this.values = new ArrayList<Boisson>(values);
+            this.values = values;
         }
 
         @Override
@@ -61,14 +55,15 @@ public class CarteActivity extends ListActivity {
 
             nomView.setText(values.get(position).nom());
             prixView.setText(String.format(
-                    getString(R.string.format_prix),
-                    values.get(position).prix())
+                            getString(R.string.format_prix),
+                            values.get(position).prix())
             );
 
             int imageid = getResources().getIdentifier(
                     "icon_" + values.get(position).categorie().icone(),
                     "drawable", getPackageName()
             );
+            Log.i("CarteActivity", values.get(position).categorie().icone());
             if (imageid != 0) {
                 imageView.setImageDrawable(getResources().getDrawable(imageid));
             }
@@ -77,32 +72,11 @@ public class CarteActivity extends ListActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carte);
+    private EditText aRechercher;
 
-        aRechercher=(EditText) findViewById(R.id.editText);
+    private List<Boisson> boissonsOriginal;
 
-        boissonsOriginal = BoissonDao.instance().findAll();
-        List<Boisson> boissons=boissonsOriginal;
-
-        adapter = new BoissonListAdapter(this, boissons);
-
-        setListAdapter(adapter);
-        aRechercher.addTextChangedListener(textWatcher);
-    }
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
-
-        BoissonDialogFragment.newInstance(boisson.nom()).show(
-                getFragmentManager(),
-                "boisson"
-        );
-    }
-
+    private BoissonListAdapter adapter;
 
     private TextWatcher textWatcher = new TextWatcher() {
 
@@ -114,9 +88,9 @@ public class CarteActivity extends ListActivity {
                 adapter.addAll(boissonsOriginal);
             }
             else {
-                for (int i = 1; i <= boissonsOriginal.size(); i++) {
-                    if (boissonsOriginal.get(i).contains(nomBoisson)) {
-                        adapter.add(boissonsOriginal.get(i));
+                for (Boisson boisson : boissonsOriginal) {
+                    if (boisson.contains(nomBoisson)) {
+                        adapter.add(boisson);
                     }
                 }
             }
@@ -134,4 +108,31 @@ public class CarteActivity extends ListActivity {
 
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_carte);
+
+        aRechercher=(EditText) findViewById(R.id.editText);
+
+        boissonsOriginal = BoissonDao.instance().findAll();
+        ArrayList<Boisson> boissons=new ArrayList<Boisson>(boissonsOriginal);
+
+        adapter = new BoissonListAdapter(this, boissons);
+
+        setListAdapter(adapter);
+        aRechercher.addTextChangedListener(textWatcher);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Boisson boisson = (Boisson) getListView().getItemAtPosition(position);
+
+        BoissonDialogFragment.newInstance(boisson.nom()).show(
+                getFragmentManager(),
+                "boisson"
+        );
+    }
+
 }
