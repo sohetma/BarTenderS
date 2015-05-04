@@ -44,7 +44,7 @@ public class MonCompteActivity extends Activity implements Closable {
 
         Utilisateur curUser = ((MyApplication) getApplication()).utilisateurConnecte();
 
-        mLogin.setText(curUser.nom());
+        mLogin.setText(curUser.login());
         mPassword.setText(curUser.motDePasse());
         mPassword2.setText(curUser.motDePasse());
         mName.setText(curUser.nom());
