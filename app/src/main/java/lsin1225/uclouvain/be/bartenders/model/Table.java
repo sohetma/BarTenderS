@@ -12,7 +12,6 @@ import lsin1225.uclouvain.be.bartenders.dao.UtilisateurDao;
  * Created by alex on 4/15/15.
  */
 public class Table extends Row {
-    private int numero;
     private float x;
     private float y;
     private int etage;
@@ -25,7 +24,7 @@ public class Table extends Row {
      * @param etage l'étage de la table
      */
     public Table(int numero, float x, float y, int etage) {
-        this.numero = numero;
+        this.rowid = numero;
         this.x = x;
         this.y = y;
         this.etage = etage;
@@ -47,7 +46,7 @@ public class Table extends Row {
      * @return la somme totale à payer pour la table
      */
     public float addition(){
-        return TableDao.instance().addition(this.numero);
+        return TableDao.instance().addition(this.rowid);
     }
 
     /**
@@ -55,23 +54,23 @@ public class Table extends Row {
      * @return une ArrayList de toutes les boissons commandées à la table.
      */
     public List<Boisson> listeBoissons() {
-        return BoissonDao.instance().listBoissonsTable(this.numero);
+        return BoissonDao.instance().listBoissonsTable(this.rowid);
     }
 
     public List<Utilisateur> listeClients() {
-        return UtilisateurDao.instance().listClientsTable(this.numero);
+        return UtilisateurDao.instance().listClientsTable(this.rowid);
     }
 
     public List<Commande> listeCommandes() {
-        return CommandeDao.instance().listCommandesTable(this.numero);
+        return CommandeDao.instance().listCommandesTable(this.rowid);
     }
 
-    public int numero() {
-        return numero;
+    public long numero() {
+        return rowid;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumero(long numero) {
+        this.rowid = numero;
     }
 
     public int etage() {

@@ -55,7 +55,7 @@ public class BoissonDialogFragment extends DialogFragment {
         ImageView imageView = (ImageView) dialogView.findViewById(R.id.icone);
 
         String nom_boisson = getArguments().getString("nom_boisson");
-        Boisson boisson = null;
+        Boisson boisson;
         if (nom_boisson != null) {
             boisson = BoissonDao.instance().find(nom_boisson);
         } else {

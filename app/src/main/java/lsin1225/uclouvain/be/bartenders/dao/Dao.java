@@ -36,9 +36,9 @@ abstract public class Dao<T extends Row> {
         return rows;
     }
 
-    public void insert(T row) {
+    public long insert(T row) {
         ContentValues values = rowToContentValues(row);
-        db.insert(tableName, null, values);
+        return db.insert(tableName, null, values);
     }
 
     public void update(T row) {
@@ -57,13 +57,27 @@ abstract public class Dao<T extends Row> {
         Cursor cursor = db.query(tableName, null,
                 idColumn + "=?", new String[]{id},
                 null, null, null, "1");
-        T retval = null;
 
+        T retval = null;
         if (cursor.moveToNext()) {
             retval = cursorToRow(cursor);
         }
         if (retval == null) {
             Log.e("Dao.find", tableName + ": retval == null");
+        }
+
+        cursor.close();
+        return retval;
+    }
+
+    public T find(long id) {
+        Cursor cursor = db.query(tableName, null,
+                "ROWID = ?", new String[]{Long.toString(id)},
+                null, null, null, "1");
+
+        T retval = null;
+        if (cursor.moveToNext()) {
+            retval = cursorToRow(cursor);
         }
 
         cursor.close();
