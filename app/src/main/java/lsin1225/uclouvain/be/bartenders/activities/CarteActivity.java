@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class CarteActivity extends ListActivity {
                     "icon_" + values.get(position).categorie().icone(),
                     "drawable", getPackageName()
             );
+            Log.i("CarteActivity", values.get(position).categorie().icone());
             if (imageid != 0) {
                 imageView.setImageDrawable(getResources().getDrawable(imageid));
             }
