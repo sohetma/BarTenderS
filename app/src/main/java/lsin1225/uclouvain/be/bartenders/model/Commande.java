@@ -6,13 +6,9 @@ import lsin1225.uclouvain.be.bartenders.dao.Dao;
 import lsin1225.uclouvain.be.bartenders.dao.TableDao;
 
 /**
- * TODO changer l'arraylist de Boisson en arraylist de EntréeCommande,
- * comme ça on peut avoir un objet contenant {coca, 3} pour signifier 3 cocas,
- * au lieu d'avoir 3 fois l'objet coca dans la liste...
  * Created by alex on 4/15/15.
  */
 public class Commande extends Row {
-    private int numero = 0;
     private boolean estPayee = false;
 
     /**
@@ -44,7 +40,6 @@ public class Commande extends Row {
         }
     }
 
-
     /**
      * Ajoute n fois
      * @param boisson la boisson à ajouter
@@ -53,7 +48,7 @@ public class Commande extends Row {
     public void ajouterBoisson(Boisson boisson, int quantite) {
         if (quantite < 0)
             throw new IllegalArgumentException("Impossible d'ajouter un nombre négatif de boissons.");
-        CommandeDao.instance().addBoisson(this.numero, boisson.nom(), quantite);
+        CommandeDao.instance().addBoisson(this.rowid, boisson.nom(), quantite);
     }
 
     /**
@@ -62,11 +57,11 @@ public class Commande extends Row {
      * @param boisson la boisson à retirer.
      */
     public void supprimerBoisson(Boisson boisson) {
-        CommandeDao.instance().removeBoisson(this.numero, boisson.nom());
+        CommandeDao.instance().removeBoisson(this.rowid, boisson.nom());
     }
 
     public List<BoissonCommande> listeBoissons() {
-        return CommandeDao.instance().listBoissonCommande(this.numero);
+        return CommandeDao.instance().listBoissonCommande(this.rowid);
     }
 
     /**
@@ -74,20 +69,20 @@ public class Commande extends Row {
      * @return la somme totale à payer.
      */
     public float addition(){
-        return CommandeDao.instance().addition(this.numero);
+        return CommandeDao.instance().addition(this.rowid);
     }
 
     public Table table() {
-        return TableDao.instance().tableCommande(this.numero);
+        return TableDao.instance().tableCommande(this.rowid);
     }
 
 
-    public int numero() {
-        return numero;
+    public long numero() {
+        return rowid;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumero(long numero) {
+        this.rowid = numero;
     }
 
     public boolean estPayee() {
@@ -102,4 +97,5 @@ public class Commande extends Row {
     protected Dao defaultDao() {
         return CommandeDao.instance();
     }
+
 }

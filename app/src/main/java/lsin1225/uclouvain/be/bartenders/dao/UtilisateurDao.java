@@ -52,14 +52,14 @@ public class UtilisateurDao extends Dao<Utilisateur> {
         }
     }
 
-    public List<Utilisateur> listClientsTable(int numero) {
+    public List<Utilisateur> listClientsTable(long numero) {
         Cursor cursor = db.rawQuery("SELECT u.*" +
                         " FROM " + TABLE_UTILISATEUR + " u" +
                         " LEFT JOIN " + TABLE_CLIENT + " c" +
                         " ON c." + COL_LOGIN + " = u." + COL_LOGIN +
                         " WHERE c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 }
         );
 

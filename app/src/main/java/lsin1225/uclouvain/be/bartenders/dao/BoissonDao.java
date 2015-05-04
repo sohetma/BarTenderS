@@ -107,7 +107,7 @@ public class BoissonDao extends Dao<Boisson> {
         return retval;
     }
 
-    public List<Boisson> listBoissonsTable(int numero) {
+    public List<Boisson> listBoissonsTable(long numero) {
         Cursor cursor = db.rawQuery("SELECT DISTINCT b.* FROM " + TABLE_BOISSON + " b" +
                         " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
                         " ON bc." + COL_NOM_BOISSON + " = b." + COL_NOM_BOISSON +
@@ -115,7 +115,7 @@ public class BoissonDao extends Dao<Boisson> {
                         " ON c." + COL_NUMERO_COMMANDE + " = bc." + COL_NUMERO_COMMANDE +
                         " WHERE c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 }
         );
 

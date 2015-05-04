@@ -54,11 +54,11 @@ public class TableDao extends Dao<Table> {
         }
     }
 
-    public Table find(int numero) {
-        return this.find(Integer.toString(numero));
+    public Table find(long numero) {
+        return this.find(Long.toString(numero));
     }
 
-    public float addition(int numero) {
+    public float addition(long numero) {
         Cursor cursor = db.rawQuery("SELECT Sum(b." + COL_PRIX + " * bc." + COL_QUANTITE + ")" +
                         " FROM " + TABLE_BOISSON + " b" +
                         " LEFT JOIN " + TABLE_BOISSON_COMMANDE + " bc" +
@@ -66,7 +66,7 @@ public class TableDao extends Dao<Table> {
                         " LEFT JOIN " + TABLE_COMMANDE + " c" +
                         " ON c." + COL_NUMERO_TABLE + " = ?",
                 new String[]{
-                        Integer.toString(numero)
+                        Long.toString(numero)
                 }
         );
 
@@ -79,14 +79,14 @@ public class TableDao extends Dao<Table> {
         return retval;
     }
 
-    public Table tableCommande(int numero_commande) {
+    public Table tableCommande(long numero_commande) {
         Cursor cursor = db.rawQuery("SELECT t.*" +
                         " FROM \"" + TABLE_TABLE + "\" t" +
                         " LEFT JOIN " + TABLE_COMMANDE + " c" +
                         " ON c." + COL_NUMERO_TABLE + " = t." + COL_NUMERO_TABLE +
                         " WHERE c." + COL_NUMERO_COMMANDE + " = ?",
                 new String[]{
-                        Integer.toString(numero_commande)
+                        Long.toString(numero_commande)
                 }
         );
 
