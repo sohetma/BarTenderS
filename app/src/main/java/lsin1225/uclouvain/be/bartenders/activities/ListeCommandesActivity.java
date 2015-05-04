@@ -54,7 +54,11 @@ public class ListeCommandesActivity extends TableActivity {
             CheckBox estPayeeView = (CheckBox) rowView.findViewById(R.id.est_payee);
 
             numeroCommandeView.setText(Long.toString(values.get(position).numero()));
-            numeroTableView.setText(Long.toString(values.get(position).table().numero()));
+            if (values.get(position).table() == null) {
+                numeroTableView.setText(getString(R.string.label_pas_de_table));
+            } else {
+                numeroTableView.setText(Long.toString(values.get(position).table().numero()));
+            }
             additionView.setText(String.format(
                             getString(R.string.format_prix),
                             values.get(position).addition())

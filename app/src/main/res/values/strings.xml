@@ -43,4 +43,5 @@
     <string name="title_liste_commandes">Liste des commandes</string>
     <string name="error_liste_commandes_vide">Aucune commande n\'a été enregistrée</string>
     <string name="action_nouvelle_commande">Nouvelle commande</string>
+    <string name="label_pas_de_table">-</string>
 </resources>

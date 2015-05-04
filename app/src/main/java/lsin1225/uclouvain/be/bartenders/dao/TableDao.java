@@ -32,7 +32,9 @@ public class TableDao extends Dao<Table> {
     ContentValues rowToContentValues(Table table) {
         ContentValues values = new ContentValues();
 
-        values.put(COL_NUMERO_TABLE, table.numero());
+        if (table.numero() != 0) {
+            values.put(COL_NUMERO_TABLE, table.numero());
+        }
         values.put(COL_POSITION_X, table.x());
         values.put(COL_POSITION_Y, table.y());
         values.put(COL_ETAGE, table.etage());

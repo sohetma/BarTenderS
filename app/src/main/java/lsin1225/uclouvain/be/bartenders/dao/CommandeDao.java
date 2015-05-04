@@ -30,7 +30,9 @@ public class CommandeDao extends Dao<Commande> {
     protected ContentValues rowToContentValues(Commande commande) {
         ContentValues values = new ContentValues();
 
-        values.put(COL_NUMERO_COMMANDE, commande.numero());
+        if (commande.numero() != 0) {
+            values.put(COL_NUMERO_COMMANDE, commande.numero());
+        }
         values.put(COL_PAYEE, commande.estPayee());
 
         return values;
