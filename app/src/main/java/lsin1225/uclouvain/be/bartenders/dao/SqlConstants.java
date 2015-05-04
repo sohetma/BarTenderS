@@ -18,6 +18,8 @@ public final class SqlConstants {
     public static final String COL_ICONE = "icone";
     public static final String COL_LOGIN = "login";
     public static final String COL_MOT_DE_PASSE = "mot_de_passe";
+    public static final String COL_NOM = "nom";
+    public static final String COL_ROLE = "role";
     public static final String COL_NOM_BOISSON = "nom_boisson";
     public static final String COL_NOM_CATEGORIE = "nom_categorie";
     public static final String COL_NUMERO_COMMANDE = "numero_commande";

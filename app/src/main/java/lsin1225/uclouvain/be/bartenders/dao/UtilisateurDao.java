@@ -26,14 +26,40 @@ public class UtilisateurDao extends Dao<Utilisateur> {
         this.idColumn = COL_LOGIN;
     }
 
+    private int roleToRoleID(Utilisateur.Role r) {
+        switch(r) {
+            case CLIENT:
+                return 0;
+            case SERVEUR:
+                return 1;
+            case GESTIONNAIRE:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    private Utilisateur.Role roleIDToRole(int roleID) {
+        switch(roleID) {
+            case 0:
+                return Utilisateur.Role.CLIENT;
+            case 1:
+                return Utilisateur.Role.SERVEUR;
+            case 2:
+                return Utilisateur.Role.GESTIONNAIRE;
+            default:
+                return Utilisateur.Role.CLIENT;
+        }
+    }
+
     @Override
     ContentValues rowToContentValues(Utilisateur utilisateur) {
         ContentValues values = new ContentValues();
 
         values.put(COL_LOGIN, utilisateur.login());
         values.put(COL_MOT_DE_PASSE, utilisateur.motDePasse());
-        //values.put(COL_NOM, utilisateur.nom());
-
+        values.put(COL_NOM, utilisateur.nom());
+        values.put(COL_ROLE, roleToRoleID(utilisateur.role()));
         return values;
     }
 
@@ -43,8 +69,8 @@ public class UtilisateurDao extends Dao<Utilisateur> {
             Utilisateur utilisateur = new Utilisateur(
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_LOGIN)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_MOT_DE_PASSE)),
-                    "", Utilisateur.Role.CLIENT //TODO
-                    //cursor.getString(cursor.getColumnIndexOrThrow(COL_NOM))
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_NOM)),
+                    roleIDToRole(cursor.getInt(cursor.getColumnIndexOrThrow(COL_ROLE)))
             );
             return utilisateur;
         } catch (IllegalArgumentException e) {

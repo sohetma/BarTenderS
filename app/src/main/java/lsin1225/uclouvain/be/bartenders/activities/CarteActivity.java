@@ -3,6 +3,8 @@ package lsin1225.uclouvain.be.bartenders.activities;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,8 @@ public class CarteActivity extends ListActivity {
 
     private EditText aRechercher;
 
-    private List<Boisson> boissons;
+    private List<Boisson> boissonsOriginal;
+
 
     private BoissonListAdapter adapter;
 
@@ -80,14 +83,14 @@ public class CarteActivity extends ListActivity {
         setContentView(R.layout.activity_carte);
 
         aRechercher=(EditText) findViewById(R.id.editText);
-        Button recherche=(Button) findViewById(R.id.button);
 
-        boissons = BoissonDao.instance().findAll();
+        boissonsOriginal = BoissonDao.instance().findAll();
+        List<Boisson> boissons=boissonsOriginal;
 
         adapter = new BoissonListAdapter(this, boissons);
 
         setListAdapter(adapter);
-        recherche.setOnClickListener(rechercheListener);
+        aRechercher.addTextChangedListener(textWatcher);
     }
 
     @Override
@@ -100,23 +103,35 @@ public class CarteActivity extends ListActivity {
         );
     }
 
-    private View.OnClickListener rechercheListener = new View.OnClickListener() {
+
+    private TextWatcher textWatcher = new TextWatcher() {
+
         @Override
-        public void onClick(View v) {//rechercher les boissons
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
             String nomBoisson = aRechercher.getText().toString();
             adapter.clear();
             if(nomBoisson.equals("")){ //si le string de recherche est vide
-                adapter.addAll(boissons);
+                adapter.addAll(boissonsOriginal);
             }
             else {
-                for (int i = 1; i <= boissons.size(); i++) {
-                    if (boissons.get(i).contains(nomBoisson)) {
-                        adapter.add(boissons.get(i));
+                for (int i = 1; i <= boissonsOriginal.size(); i++) {
+                    if (boissonsOriginal.get(i).contains(nomBoisson)) {
+                        adapter.add(boissonsOriginal.get(i));
                     }
                 }
             }
             adapter.notifyDataSetChanged();
-        } //a vérifier : cette adapter.clear supprime l'instance de boissons interne a l'adapter
-        // pas celle de cette classe-ci?
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
     };
 }
