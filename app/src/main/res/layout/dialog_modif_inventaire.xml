@@ -9,58 +9,152 @@
     android:gravity="center_horizontal">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nom_boisson"
+            android:id="@+id/nomtext"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/nomtext"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/nom"
-            android:layout_centerInParent="true"
             android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stock"
+            android:id="@+id/stocktext"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/stocktext"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/stock"
-            android:layout_centerInParent="true"
+            android:inputType="number"
+            android:ems="10"
             android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/max"
+            android:id="@+id/maxtext"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/maxtext"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/max"
-            android:layout_centerInParent="true"
+            android:inputType="number"
+            android:ems="10"
             android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seuil"
+            android:id="@+id/seuiltext"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/seuiltext"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/seuil"
-            android:layout_centerInParent="true"
+            android:inputType="number"
+            android:ems="10"
             android:textStyle="bold" />
+
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prix"
+            android:id="@+id/prixtext"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/prixtext"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:id="@+id/prix"
-            android:layout_centerInParent="true"
+            android:inputType="number"
+            android:ems="10"
             android:textStyle="bold" />
+    </RelativeLayout>
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:id="@+id/icone"
-            android:layout_centerVertical="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:id="@+id/icone" />
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_appliquer"
+            android:id="@+id/apply" />
+
 </LinearLayout>

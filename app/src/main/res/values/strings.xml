@@ -21,6 +21,13 @@
     <string name="error_commande_inexistante">Pas de commande sélectionnée</string>
     <string name="title_activity_liste_commandes">Liste des commandes</string>
 
+    <string name="button_appliquer">Appliquer</string>
+    <string name="nom_boisson">Nom:</string>
+    <string name="stock">Stock:</string>
+    <string name="max">Max:</string>
+    <string name="seuil">Seuil:</string>
+    <string name="prix">Prix:</string>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_mon_compte">Mon compte</string>
