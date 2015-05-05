@@ -54,15 +54,9 @@ public class InventaireActivity extends ListActivity {
             View rowView = inflater.inflate(resource, parent, false);
 
             TextView nomView = (TextView) rowView.findViewById(R.id.nom);
-            TextView stock = (TextView) rowView.findViewById(R.id.stock);
-            TextView max = (TextView) rowView.findViewById(R.id.max);
-            TextView seuil = (TextView) rowView.findViewById(R.id.seuil);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icone);
 
             nomView.setText(values.get(position).nom());
-            stock.setText(values.get(position).stock());
-            max.setText(values.get(position).stockMax());
-            seuil.setText(values.get(position).stockSeuil());
 
             int imageid = getResources().getIdentifier(
                     "icon_" + values.get(position).categorie().icone(),
@@ -92,9 +86,9 @@ public class InventaireActivity extends ListActivity {
                 adapter.addAll(boissonsOriginal);
             }
             else {
-                for (int i = 1; i <= boissonsOriginal.size(); i++) {
-                    if (boissonsOriginal.get(i).contains(nomBoisson)) {
-                        adapter.add(boissonsOriginal.get(i));
+                for (Boisson boisson : boissonsOriginal) {
+                    if (boisson.contains(nomBoisson)) {
+                        adapter.add(boisson);
                     }
                 }
             }
